@@ -1,5 +1,6 @@
 package com.example.buildmoviewithcompose.widgets
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -27,6 +28,8 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.compose.rememberImagePainter
+import coil.transform.CircleCropTransformation
 import com.bawp.movieapp.model.Movie
 import com.bawp.movieapp.model.getMovies
 
@@ -67,10 +70,14 @@ fun CardMovie(
                 ),
                 shadowElevation = 20.dp,
             ) {
-                Icon(
-                    imageVector = Icons.Rounded.AccountCircle,
-                    contentDescription = "Movie Image",
-                )
+                Image(painter = rememberImagePainter(
+                    data = movie.images[1],
+                    builder = {
+                        crossfade(true)
+                        transformations(CircleCropTransformation())
+                    }
+                ),
+                    contentDescription = "Movie Poster")
             }
             Column (modifier =
             Modifier.padding(4.dp)){
