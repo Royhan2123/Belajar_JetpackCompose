@@ -1,7 +1,9 @@
-package com.example.buildmoviewithcompose.screen.Home
+package com.example.buildmoviewithcompose.activity.Home
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
@@ -19,11 +21,13 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.example.buildmoviewithcompose.model.Movie
+import com.example.buildmoviewithcompose.model.getMovies
 import com.example.buildmoviewithcompose.navigation.MoviesScreens
-import com.example.buildmoviewithcompose.ui.CardMovie
-import com.example.buildmoviewithcompose.ui.theme.Cyan
+import com.example.buildmoviewithcompose.widgets.CardMovie
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
@@ -33,13 +37,18 @@ fun HomeScreen(navController: NavController) {
         topBar = {
             TopAppBar(
                 title = {
-                    Text(
-                        text = "My App", modifier = Modifier
-                            .offset(x = 30.dp)
-                    )
+                    Row(
+                        horizontalArrangement =
+                        Arrangement.Center
+                    ) {
+                        Text(
+                            text = "My App", modifier = Modifier
+                                .offset(x = 30.dp)
+                        )
+                    }
                 },
                 colors = TopAppBarDefaults.smallTopAppBarColors(
-                    Cyan
+                    Color.White
                 ),
                 navigationIcon = {
                     Icon(
@@ -60,24 +69,13 @@ fun HomeScreen(navController: NavController) {
 @Composable
 fun MainContent(
     navController: NavController,
-    datalist: List<String> = listOf(
-        "Royhan",
-        "Reyhan",
-        "Rizki",
-        "Rayhan",
-        "Rozak",
-        "Rozak",
-        "Rozak",
-        "Rozak",
-        "Rozak",
-        "Rozak",
-        "Rozak",
-    )
+    datalist: List<Movie> = getMovies()
 ) {
     Surface(
         modifier = Modifier
             .fillMaxSize()
-            .padding(top = 50.dp)
+            .padding(top = 50.dp),
+        color = Color.White
     ) {
         Column(
             modifier = Modifier
@@ -88,10 +86,10 @@ fun MainContent(
                 )
         ) {
             LazyColumn {
-                items(items = datalist){
-                    CardMovie(movie = it){movie ->
+                items(items = datalist) {
+                    CardMovie(movie = it) { movie ->
                         navController.navigate(MoviesScreens.DetailScreen.name + "/$movie")
-                    }
+                     }
                 }
             }
         }
