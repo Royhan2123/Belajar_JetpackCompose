@@ -70,4 +70,6 @@ dependencies {
     implementation ("androidx.compose.material:material-icons-extended:1.5.1")
     //navigation
     implementation ("androidx.navigation:navigation-compose:2.7.2")
+    //coil
+    implementation("io.coil-kt:coil-compose:1.4.0")
 }
