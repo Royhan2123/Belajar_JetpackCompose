@@ -22,7 +22,9 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.bawp.movieapp.model.Movie
 import com.bawp.movieapp.model.getMovies
@@ -43,11 +45,14 @@ fun HomeScreen(navController: NavController) {
                     ) {
                         Text(
                             text = "My App", modifier = Modifier
-                                .offset(x = 30.dp)
+                                .offset(x = 20.dp), style = TextStyle(
+                                    color = Color.Black,
+                                    fontSize = 20.sp
+                                )
                         )
                     }
                 },
-                colors = TopAppBarDefaults.smallTopAppBarColors(
+                colors = TopAppBarDefaults.mediumTopAppBarColors(
                     Color.White
                 ),
                 navigationIcon = {
@@ -56,7 +61,8 @@ fun HomeScreen(navController: NavController) {
                         contentDescription = "account",
                         modifier = Modifier
                             .offset(x = 10.dp)
-                            .size(35.dp)
+                            .size(35.dp),
+                        tint = Color.Black
                     )
                 }
             )
@@ -88,7 +94,9 @@ fun MainContent(
             LazyColumn {
                 items(items = datalist) {
                     CardMovie(movie = it) { movie ->
-                        navController.navigate(MoviesScreens.DetailScreen.name + "/$movie")
+                        navController.navigate(
+                            route = MoviesScreens.DetailScreen.name+"/$movie"
+                        )
                      }
                 }
             }

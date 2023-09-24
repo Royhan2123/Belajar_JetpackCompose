@@ -28,12 +28,16 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.bawp.movieapp.model.getMovies
 
 @Preview
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DetailScreen(navController: NavController, movieData: String?) {
+fun DetailScreen(navController: NavController, movieId: String?) {
+    val newMovieList = getMovies().filter {movie ->
+        movie.id == movieId
+    }
     Scaffold(
         topBar = {
             TopAppBar(
@@ -46,9 +50,13 @@ fun DetailScreen(navController: NavController, movieData: String?) {
                             contentDescription = "Arrow Backk",
                             modifier = Modifier.clickable {
                                 navController.popBackStack()
-                            })
+                            },
+                            tint = Color.Black)
                         Spacer(modifier = Modifier.width(100.dp))
-                        Text(text = "Movies")
+                        Text(text = "Detail", style = TextStyle(
+                            fontSize = 20.sp,
+                            color = Color.Black
+                        ))
                     }
                 }, colors = TopAppBarDefaults.largeTopAppBarColors(
                     Color.White
@@ -65,10 +73,9 @@ fun DetailScreen(navController: NavController, movieData: String?) {
                 .padding(20.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center) {
-                Text(text = movieData.toString(), style = TextStyle(
+                Text(text = newMovieList[0].title, style = TextStyle(
                     fontSize = 20.sp,
                     fontFamily = FontFamily.Monospace,
-                    color = Color.Black,
                 ))
             }
         }

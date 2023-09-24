@@ -4,22 +4,24 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.CornerSize
-import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -42,6 +44,7 @@ import coil.compose.rememberImagePainter
 import coil.transform.CircleCropTransformation
 import com.bawp.movieapp.model.Movie
 import com.bawp.movieapp.model.getMovies
+import com.example.buildmoviewithcompose.ui.theme.Grey
 
 @Preview
 @Composable
@@ -52,109 +55,146 @@ fun CardMovie(
     var expanded by remember {
         mutableStateOf(false)
     }
+
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .height(200.dp)
             .clickable {
                 onItemClick(movie.id)
             }
             .padding(vertical = 10.dp),
-        shape = RoundedCornerShape(corner = CornerSize(20.dp)),
         colors = CardDefaults.cardColors(
-            Color.LightGray,
+            Grey
         ),
+        elevation = CardDefaults.cardElevation(
+           12.dp
+        )
     ) {
-        Row(
+        Box(
             modifier = Modifier
-                .fillMaxSize(),
-            horizontalArrangement = Arrangement.Start,
-            verticalAlignment = Alignment.CenterVertically,
+                .height(IntrinsicSize.Min) // Mengatur tinggi kartu sesuai dengan kontennya
         ) {
-            Surface(
+            Row(
                 modifier = Modifier
-                    .width(150.dp)
-                    .height(120.dp)
-                    .padding(12.dp),
-                shape = RoundedCornerShape(
-                    corner = CornerSize(
-                        10.dp
-                    )
-                ),
-                shadowElevation = 20.dp,
+                    .fillMaxWidth()
+                    .padding(horizontal = 10.dp),
+                horizontalArrangement = Arrangement.Start,
+                verticalAlignment = Alignment.CenterVertically,
             ) {
-                Image(painter = rememberImagePainter(
-                    data = movie.images[1],
-                    builder = {
-                        crossfade(true)
-                        transformations(CircleCropTransformation())
-                    }
-                ),
-                    contentDescription = "Movie Poster")
-            }
-            Column(
-                modifier =
-                Modifier.padding(4.dp)
-            ) {
-                Text(
-                    text = movie.title,
-                    style = TextStyle(
-                        fontSize = 17.sp
+                Surface(
+                    modifier = Modifier
+                        .size(120.dp)
+                        .padding(10.dp),
+                    shape = CircleShape,
+                    color = Color.White,
+                    shadowElevation = 20.dp,
+                ) {
+                    Image(
+                        modifier = Modifier.size(120.dp),
+                        painter = rememberImagePainter(
+                        data = movie.images[1],
+                        builder = {
+                            crossfade(true)
+                            transformations(CircleCropTransformation())
+                        },
+
+                    ),
+                        contentDescription = "Movie Poster")
+                }
+                Spacer(modifier = Modifier
+                    .padding(horizontal = 5.dp))
+                Column(
+                    modifier =
+                    Modifier.padding(4.dp)
+                ) {
+                    Text(
+                        text = movie.title,
+                        style = TextStyle(
+                            fontSize = 17.sp,
+                            color = Color.Black
+                        )
                     )
-                )
-                Text(
-                    text = "Director: ${movie.title}",
-                    style = TextStyle(
-                        fontSize = 15.sp
+                    Text(
+                        text = "Director: ${movie.title}",
+                        style = TextStyle(
+                            color = Color.Black,
+                            fontSize = 15.sp
+                        )
                     )
-                )
-                Text(
-                    text = "Released: ${movie.year}",
-                    style = TextStyle(
-                        fontSize = 15.sp
+                    Text(
+                        text = "Released: ${movie.year}",
+                        style = TextStyle(
+                            color = Color.Black,
+                            fontSize = 15.sp,
+                        )
                     )
-                )
-                AnimatedVisibility(visible = expanded) {
-                    Column {
-                        Text(buildAnnotatedString {
-                            withStyle(
-                                style = SpanStyle(
-                                    color = Color.DarkGray,
+                    AnimatedVisibility(visible = expanded) {
+                        Column {
+                            Text(
+                                buildAnnotatedString {
+                                    withStyle(
+                                        style = SpanStyle(
+                                            color = Color.DarkGray,
+                                            fontSize = 13.sp
+                                        )
+                                    ) {
+                                        append("Plot : ")
+                                    }
+                                    withStyle(
+                                        style = SpanStyle(
+                                            color = Color.DarkGray,
+                                            fontSize = 13.sp,
+                                            fontWeight = FontWeight.Bold
+                                        )
+                                    ) {
+                                        append(movie.plot)
+                                    }
+                                }, modifier = Modifier
+                                    .padding(6.dp)
+                            )
+                            Divider(
+                                modifier = Modifier.padding(3.dp)
+                            )
+                            Text(
+                                text = "Director : ${movie.director}",
+                                style = TextStyle(
+                                    color = Color.Black,
                                     fontSize = 13.sp
                                 )
-                            ) {
-                                append("Plot : ")
-                            }
-                            withStyle(
-                                style = SpanStyle(
-                                    color = Color.DarkGray,
-                                    fontSize = 13.sp,
-                                    fontWeight = FontWeight.Bold
+                            )
+                            Text(
+                                text = "Actors : ${movie.actors}",
+                                style = TextStyle(
+                                    color = Color.Black,
+                                    fontSize = 13.sp
                                 )
-                            ){
-                                append(movie.plot)
-                            }
-                        })
+                            )
+                            Text(
+                                text = "Rating : ${movie.rating}",
+                                style = TextStyle(
+                                    color = Color.Black,
+                                    fontSize = 13.sp
+                                )
+                            )
+                        }
                     }
-                }
 
-                Icon(
-                    imageVector =
-                    // disini kita lakukan operator tennary
-                    // di kotlin sangat gampang sekali,
-                    // tidak memerlukan ? dan :
-                    if (expanded)
-                        Icons.Filled.KeyboardArrowUp else
-                        Icons.Filled.KeyboardArrowDown,
-                    contentDescription = "Down Arrow",
-                    modifier = Modifier
-                        .size(30.dp)
-                        .clickable {
-                            expanded = !expanded
-                        },
-                    tint = Color.DarkGray
-                )
+                    Icon(
+                        imageVector =
+                        if (expanded)
+                            Icons.Filled.KeyboardArrowUp else
+                            Icons.Filled.KeyboardArrowDown,
+                        contentDescription = "Down Arrow",
+                        modifier = Modifier
+                            .size(30.dp)
+                            .clickable {
+                                expanded = !expanded
+                            },
+                        tint = Color.Black,
+                    )
+                }
             }
         }
     }
 }
+
