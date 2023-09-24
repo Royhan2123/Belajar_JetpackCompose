@@ -32,6 +32,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -91,6 +92,7 @@ fun CardMovie(
                 ) {
                     Image(
                         modifier = Modifier.size(120.dp),
+                        contentScale = ContentScale.Crop,
                         painter = rememberImagePainter(
                         data = movie.images[1],
                         builder = {
