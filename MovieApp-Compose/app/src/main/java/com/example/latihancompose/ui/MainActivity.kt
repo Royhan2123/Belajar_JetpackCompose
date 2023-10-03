@@ -12,7 +12,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             MovieApp {
-
+                Navigations()
             }
         }
     }
@@ -22,7 +22,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun Preview(){
     MovieApp {
-
+        Navigations()
     }
 }
 

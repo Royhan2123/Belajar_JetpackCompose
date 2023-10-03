@@ -1,11 +1,18 @@
 package com.example.latihancompose.ui
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
@@ -22,6 +29,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.input.KeyboardType
@@ -30,6 +38,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.example.latihancompose.R
 import com.example.latihancompose.Widget.ButtonStyle
 import com.example.latihancompose.Widget.TextFieldStyle
 import com.example.latihancompose.ui.theme.Blue
@@ -102,7 +111,7 @@ fun Login(navController: NavController) {
                             contentDescription = "Password"
                         )
                     },
-                    keyboardType = KeyboardType.Email,
+                    keyboardType = KeyboardType.Password,
                 )
                 ButtonStyle(
                     txt = "Login",
@@ -134,11 +143,91 @@ fun Login(navController: NavController) {
                     Text(
                         text = "-- or sign with --",
                         style = TextStyle(
-                            fontSize = 13.sp,
+                            fontSize = 15.sp,
                             color = Grey
                         )
                     )
                 }
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(80.dp)
+                        .padding(top = 15.dp),
+                    horizontalArrangement = Arrangement.Center,
+                ) {
+                    Surface(
+                        modifier = Modifier.size(50.dp),
+                        shape = CircleShape
+                    ) {
+                        Image(
+                            painter = painterResource(
+                                id = R.drawable.facebook
+                            ),
+                            contentDescription = "facebook"
+                        )
+                    }
+                    Spacer(
+                        modifier = Modifier.padding(
+                            start = 10.dp
+                        )
+                    )
+                    Surface(
+                        modifier = Modifier.size(50.dp),
+                        shape = CircleShape
+                    ) {
+                        Image(
+                            painter = painterResource(
+                                id = R.drawable.google
+                            ),
+                            contentDescription = "google"
+                        )
+                    }
+                    Spacer(
+                        modifier = Modifier.padding(
+                            end = 10.dp
+                        )
+                    )
+                    Surface(
+                        modifier = Modifier.size(50.dp),
+                        shape = CircleShape
+                    ) {
+                        Image(
+                            painter = painterResource(
+                                id = R.drawable.twitter
+                            ),
+                            contentDescription = "twitter"
+                        )
+                    }
+                }
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(100.dp)
+                        .padding(top = 50.dp),
+                    horizontalArrangement = Arrangement.Center,
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    Text(
+                        text = "dont have account?",
+                        style = TextStyle(
+                            fontSize = 13.sp,
+                            color = Color.Gray
+                        ),
+                        modifier = Modifier.padding(start = 4.dp)
+                    )
+                    TextButton(onClick = {}) {
+                        Text(
+                            text = "Sign Up",
+                            style = TextStyle(
+                                color = Blue,
+                                fontSize = 13.sp
+                            ),
+                            modifier = Modifier.padding(end = 4.dp)
+
+                        )
+                    }
+                }
+
             }
         }
     }
