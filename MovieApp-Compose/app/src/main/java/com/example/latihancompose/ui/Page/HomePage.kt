@@ -68,9 +68,14 @@ fun HomePage(navController: NavController){
             )
         },
     ){
-        Surface (){
+        MainContent(navController = navController)
+    }
+}
 
-        }
+@Composable
+fun MainContent(navController: NavController){
+    Surface (){
+
     }
 }
 @Preview
