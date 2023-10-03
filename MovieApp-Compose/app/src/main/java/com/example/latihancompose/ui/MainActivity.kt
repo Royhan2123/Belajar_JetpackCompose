@@ -1,12 +1,10 @@
-package com.example.latihancompose
+package com.example.latihancompose.ui
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.navigation.compose.rememberNavController
-import com.example.latihancompose.ui.IniNavigation
 import com.example.latihancompose.ui.theme.LatihanComposeTheme
 
 class MainActivity : ComponentActivity() {
@@ -14,7 +12,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             MovieApp {
-                IniNavigation()
+
             }
         }
     }
@@ -24,7 +22,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun Preview(){
     MovieApp {
-        IniNavigation()
+
     }
 }
 
