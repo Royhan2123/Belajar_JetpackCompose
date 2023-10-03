@@ -3,33 +3,43 @@ package com.example.latihancompose.ui
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.Surface
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.Email
+import androidx.compose.material.icons.rounded.VisibilityOff
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.example.latihancompose.Widget.ButtonStyle
+import com.example.latihancompose.Widget.TextFieldStyle
+import com.example.latihancompose.ui.theme.Blue
+import com.example.latihancompose.ui.theme.Grey
 
 @Composable
 fun Login(navController: NavController) {
+    val state = remember {
+        mutableStateOf("")
+    }
     Surface(
         modifier = Modifier.fillMaxSize(),
         color = Color.White,
@@ -47,11 +57,16 @@ fun Login(navController: NavController) {
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(10.dp),
+                    .padding(20.dp),
             ) {
-                Box (modifier = Modifier.fillMaxWidth(),
-                    contentAlignment = Alignment.Center){
-                    Text(text = "Login Your Account",
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 20.dp),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = "Login Your Account",
                         style = TextStyle(
                             fontSize = 20.sp,
                             color = Color.Black,
@@ -59,8 +74,71 @@ fun Login(navController: NavController) {
                         ),
                     )
                 }
-                Spacer(modifier = Modifier.offset(y = 100.dp))
-
+                TextFieldStyle(
+                    enabled = true,
+                    modifier = Modifier
+                        .padding(top = 150.dp),
+                    valueState = state,
+                    labelId = "Email",
+                    isSingleLine = true,
+                    trailingIcon = {
+                        Icon(
+                            imageVector = Icons.Rounded.Email,
+                            contentDescription = "Email"
+                        )
+                    },
+                    keyboardType = KeyboardType.Email,
+                )
+                TextFieldStyle(
+                    enabled = true,
+                    modifier = Modifier
+                        .padding(top = 15.dp),
+                    valueState = state,
+                    labelId = "Password",
+                    isSingleLine = true,
+                    trailingIcon = {
+                        Icon(
+                            imageVector = Icons.Rounded.VisibilityOff,
+                            contentDescription = "Password"
+                        )
+                    },
+                    keyboardType = KeyboardType.Email,
+                )
+                ButtonStyle(
+                    txt = "Login",
+                    onItemClick = {},
+                    modifier = Modifier
+                        .padding(top = 20.dp, bottom = 10.dp),
+                    enabled = true
+                )
+                Box(
+                    modifier = Modifier.fillMaxWidth(),
+                    contentAlignment = Alignment.BottomEnd
+                ) {
+                    TextButton(onClick = {}) {
+                        Text(
+                            text = "Forgot Your Password",
+                            style = TextStyle(
+                                color = Blue,
+                                fontSize = 13.sp
+                            )
+                        )
+                    }
+                }
+                Box(
+                    contentAlignment = Alignment.Center,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 20.dp)
+                ) {
+                    Text(
+                        text = "-- or sign with --",
+                        style = TextStyle(
+                            fontSize = 13.sp,
+                            color = Grey
+                        )
+                    )
+                }
             }
         }
     }
