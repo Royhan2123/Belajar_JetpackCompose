@@ -31,11 +31,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.example.latihancompose.ui.theme.Black
 import com.example.latihancompose.ui.theme.White
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -53,7 +55,7 @@ fun HomePage(navController: NavController){
                         overflow = TextOverflow.Ellipsis
                     )
                 },
-                colors = TopAppBarDefaults.largeTopAppBarColors(
+                colors = TopAppBarDefaults.smallTopAppBarColors(
                     White,
                 ),
                 actions = {
@@ -74,8 +76,20 @@ fun HomePage(navController: NavController){
 
 @Composable
 fun MainContent(navController: NavController){
-    Surface (){
-
+    Surface (
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(top = 60.dp),
+        color = Black
+    ){
+        Column (
+            modifier = Modifier.fillMaxSize()
+                .padding(20.dp)
+        ) {
+            Text(text = "Hello", style = TextStyle(
+                color = White
+            ))
+        }
     }
 }
 @Preview
