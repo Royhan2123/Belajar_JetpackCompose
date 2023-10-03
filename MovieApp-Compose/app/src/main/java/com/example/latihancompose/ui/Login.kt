@@ -46,7 +46,10 @@ import com.example.latihancompose.ui.theme.Grey
 
 @Composable
 fun Login(navController: NavController) {
-    val state = remember {
+    val txtEmail = remember {
+        mutableStateOf("")
+    }
+    val txtPassword = remember {
         mutableStateOf("")
     }
     Surface(
@@ -85,24 +88,21 @@ fun Login(navController: NavController) {
                 }
                 TextFieldStyle(
                     enabled = true,
-                    modifier = Modifier
-                        .padding(top = 150.dp),
-                    valueState = state,
+                    modifier = Modifier.padding(top = 150.dp),
+                    valueState = txtEmail,
                     labelId = "Email",
                     isSingleLine = true,
                     trailingIcon = {
                         Icon(
-                            imageVector = Icons.Rounded.Email,
-                            contentDescription = "Email"
+                            imageVector = Icons.Rounded.Email, contentDescription = "Email"
                         )
                     },
                     keyboardType = KeyboardType.Email,
                 )
                 TextFieldStyle(
                     enabled = true,
-                    modifier = Modifier
-                        .padding(top = 15.dp),
-                    valueState = state,
+                    modifier = Modifier.padding(top = 15.dp),
+                    valueState = txtPassword,
                     labelId = "Password",
                     isSingleLine = true,
                     trailingIcon = {
@@ -114,22 +114,19 @@ fun Login(navController: NavController) {
                     keyboardType = KeyboardType.Password,
                 )
                 ButtonStyle(
-                    txt = "Login",
-                    onItemClick = {},
-                    modifier = Modifier
-                        .padding(top = 20.dp, bottom = 10.dp),
-                    enabled = true
+                    txt = "Login", onItemClick = {
+                        navController.navigate(
+                            NavigationScreen.HomePage.name
+                        )
+                    }, modifier = Modifier.padding(top = 20.dp, bottom = 10.dp), enabled = true
                 )
                 Box(
-                    modifier = Modifier.fillMaxWidth(),
-                    contentAlignment = Alignment.BottomEnd
+                    modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.BottomEnd
                 ) {
                     TextButton(onClick = {}) {
                         Text(
-                            text = "Forgot Your Password",
-                            style = TextStyle(
-                                color = Blue,
-                                fontSize = 13.sp
+                            text = "Forgot Your Password", style = TextStyle(
+                                color = Blue, fontSize = 13.sp
                             )
                         )
                     }
@@ -141,10 +138,8 @@ fun Login(navController: NavController) {
                         .padding(top = 20.dp)
                 ) {
                     Text(
-                        text = "-- or sign with --",
-                        style = TextStyle(
-                            fontSize = 15.sp,
-                            color = Grey
+                        text = "-- or sign with --", style = TextStyle(
+                            fontSize = 15.sp, color = Grey
                         )
                     )
                 }
@@ -156,14 +151,12 @@ fun Login(navController: NavController) {
                     horizontalArrangement = Arrangement.Center,
                 ) {
                     Surface(
-                        modifier = Modifier.size(50.dp),
-                        shape = CircleShape
+                        modifier = Modifier.size(50.dp), shape = CircleShape
                     ) {
                         Image(
                             painter = painterResource(
                                 id = R.drawable.facebook
-                            ),
-                            contentDescription = "facebook"
+                            ), contentDescription = "facebook"
                         )
                     }
                     Spacer(
@@ -172,14 +165,12 @@ fun Login(navController: NavController) {
                         )
                     )
                     Surface(
-                        modifier = Modifier.size(50.dp),
-                        shape = CircleShape
+                        modifier = Modifier.size(50.dp), shape = CircleShape
                     ) {
                         Image(
                             painter = painterResource(
                                 id = R.drawable.google
-                            ),
-                            contentDescription = "google"
+                            ), contentDescription = "google"
                         )
                     }
                     Spacer(
@@ -188,14 +179,12 @@ fun Login(navController: NavController) {
                         )
                     )
                     Surface(
-                        modifier = Modifier.size(50.dp),
-                        shape = CircleShape
+                        modifier = Modifier.size(50.dp), shape = CircleShape
                     ) {
                         Image(
                             painter = painterResource(
                                 id = R.drawable.twitter
-                            ),
-                            contentDescription = "twitter"
+                            ), contentDescription = "twitter"
                         )
                     }
                 }
@@ -208,21 +197,19 @@ fun Login(navController: NavController) {
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
                     Text(
-                        text = "dont have account?",
-                        style = TextStyle(
-                            fontSize = 13.sp,
-                            color = Color.Gray
-                        ),
-                        modifier = Modifier.padding(start = 4.dp)
+                        text = "dont have account?", style = TextStyle(
+                            fontSize = 13.sp, color = Color.Gray
+                        ), modifier = Modifier.padding(start = 4.dp)
                     )
-                    TextButton(onClick = {}) {
+                    TextButton(onClick = {
+                        navController.navigate(
+                            NavigationScreen.Register.name
+                        )
+                    }) {
                         Text(
-                            text = "Sign Up",
-                            style = TextStyle(
-                                color = Blue,
-                                fontSize = 13.sp
-                            ),
-                            modifier = Modifier.padding(end = 4.dp)
+                            text = "Sign Up", style = TextStyle(
+                                color = Blue, fontSize = 13.sp
+                            ), modifier = Modifier.padding(end = 4.dp)
 
                         )
                     }

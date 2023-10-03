@@ -46,7 +46,13 @@ import com.example.latihancompose.ui.theme.Grey
 
 @Composable
 fun Register(navController: NavController) {
-    val state = remember {
+    val txtEmail = remember {
+        mutableStateOf("")
+    }
+    val txtPassword = remember {
+        mutableStateOf("")
+    }
+    val txtName = remember {
         mutableStateOf("")
     }
     Surface(
@@ -87,7 +93,7 @@ fun Register(navController: NavController) {
                     enabled = true,
                     modifier = Modifier
                         .padding(top = 150.dp),
-                    valueState = state,
+                    valueState = txtName,
                     labelId = "Name",
                     isSingleLine = true,
                     keyboardType = KeyboardType.Text,
@@ -97,7 +103,7 @@ fun Register(navController: NavController) {
                     enabled = true,
                     modifier = Modifier
                         .padding(top = 15.dp),
-                    valueState = state,
+                    valueState = txtEmail,
                     labelId = "Email",
                     isSingleLine = true,
                     trailingIcon = {
@@ -112,7 +118,7 @@ fun Register(navController: NavController) {
                     enabled = true,
                     modifier = Modifier
                         .padding(top = 15.dp),
-                    valueState = state,
+                    valueState = txtPassword,
                     labelId = "Password",
                     isSingleLine = true,
                     trailingIcon = {
@@ -125,7 +131,11 @@ fun Register(navController: NavController) {
                 )
                 ButtonStyle(
                     txt = "Login",
-                    onItemClick = {},
+                    onItemClick = {
+                        navController.navigate(
+                            NavigationScreen.HomePage.name
+                        )
+                    },
                     modifier = Modifier
                         .padding(top = 20.dp, bottom = 10.dp),
                     enabled = true
@@ -211,7 +221,9 @@ fun Register(navController: NavController) {
                         ),
                         modifier = Modifier.padding(start = 4.dp)
                     )
-                    TextButton(onClick = {}) {
+                    TextButton(onClick = {
+                        navController.popBackStack()
+                    }) {
                         Text(
                             text = "Sign In",
                             style = TextStyle(

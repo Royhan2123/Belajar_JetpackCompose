@@ -1,5 +1,4 @@
 package com.example.latihancompose.ui
-
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -22,7 +21,7 @@ import kotlinx.coroutines.delay
 @Composable
 fun SplashScreen(navController: NavController) {
     LaunchedEffect(key1 = true){
-        delay(3000L)
+        delay(5000L)
         navController.navigate(NavigationScreen.Login.name)
     }
     Surface(
