@@ -293,7 +293,7 @@ fun getMoviesHorror(): List<Movie> {
 fun getMoviesAventure(): List<Movie> {
     return listOf(
         Movie(id = "tt0499549",
-            title = "The Super Mario Bros",
+            title = "Super Mario",
             year = "2023",
             genre = "Adventure,Action,Fantasy,Game",
             director = "Pak Abdul",
@@ -308,7 +308,7 @@ fun getMoviesAventure(): List<Movie> {
             rating = "7.9"),
 
         Movie(id = "tt0416449",
-            title = "Jumanji The Next Level",
+            title = "Jumanji",
             year = "2023",
             genre = "Adventure,Action",
             director = "Zack Snyder",
@@ -338,7 +338,7 @@ fun getMoviesAventure(): List<Movie> {
             rating = "8.1"),
 
         Movie(id = "tt0993846",
-            title = "Minions The Rise Of Gru",
+            title = "Minions",
             year = "2013",
             genre = "Biography, Comedy, Crime",
             director = "Martin Scorsese",
@@ -353,7 +353,7 @@ fun getMoviesAventure(): List<Movie> {
             rating = "8.2"),
 
         Movie(id = "tt0816692",
-            title = "The SpongeBob Movie: Sponge on the Run",
+            title = "SpongeBob Movie",
             year = "2014",
             genre = "Adventure, Drama, Sci-Fi",
             director = "Christopher Nolan",
@@ -367,21 +367,19 @@ fun getMoviesAventure(): List<Movie> {
                 "https://images-na.ssl-images-amazon.com/images/M/MV5BNjYzNjE2NDk3N15BMl5BanBnXkFtZTgwNzEyODgxMzE@._V1_SX1500_CR0,0,1500,999_AL_.jpg"),
             rating = "8.6"),
         Movie(id = "tt0944947",
-            title = "Game of Thrones",
+            title = "Dora The Explorer",
             year = "2011 - 2018",
             genre = "Adventure, Drama, Fantasy",
             director = "N/A",
             actors = "Peter Dinklage, Lena Headey, Emilia Clarke, Kit Harington",
             plot = "While a civil war brews between several noble families in Westeros, the children of the former rulers of the land attempt to rise up to power. Meanwhile a forgotten race, bent on destruction, plans to return after thousands of years in the North.",
-            poster = "http://ia.media-imdb.com/images/M/MV5BMjM5OTQ1MTY5Nl5BMl5BanBnXkFtZTgwMjM3NzMxODE@._V1_SX300.jpg",
+            poster = "https://upload.wikimedia.org/wikipedia/id/b/b7/DoraLostCityOfGoldTeaserPoster.jpeg",
             images = listOf("https://images-na.ssl-images-amazon.com/images/M/MV5BNDc1MGUyNzItNWRkOC00MjM1LWJjNjMtZTZlYWIxMGRmYzVlXkEyXkFqcGdeQXVyMzU3MDEyNjk@._V1_SX1777_CR0,0,1777,999_AL_.jpg",
                 "https://images-na.ssl-images-amazon.com/images/M/MV5BZjZkN2M5ODgtMjQ2OC00ZjAxLWE1MjMtZDE0OTNmNGM0NWEwXkEyXkFqcGdeQXVyNjUxNzgwNTE@._V1_SX1777_CR0,0,1777,999_AL_.jpg",
                 "https://images-na.ssl-images-amazon.com/images/M/MV5BMDk4Y2Y1MDAtNGVmMC00ZTlhLTlmMmQtYjcyN2VkNzUzZjg2XkEyXkFqcGdeQXVyNjUxNzgwNTE@._V1_SX1777_CR0,0,1777,999_AL_.jpg",
                 "https://images-na.ssl-images-amazon.com/images/M/MV5BNjZjNWIzMzQtZWZjYy00ZTkwLWJiMTYtOWRkZDBhNWJhY2JmXkEyXkFqcGdeQXVyMjk3NTUyOTc@._V1_SX1777_CR0,0,1777,999_AL_.jpg",
                 "https://images-na.ssl-images-amazon.com/images/M/MV5BNTMyMTRjZWEtM2UxMS00ZjU5LWIxMTYtZDA5YmJhZmRjYTc4XkEyXkFqcGdeQXVyMjk3NTUyOTc@._V1_SX1777_CR0,0,1777,999_AL_.jpg"),
             rating = "9.5"),
-
-
         Movie(id = "tt2306299",
             title = "Vikings",
             year = "2013–2020",

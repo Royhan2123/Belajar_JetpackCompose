@@ -138,6 +138,7 @@ fun MainContent(navController: NavController) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
+                .verticalScroll(rememberScrollState())
                 .padding(
                     start = 20.dp, top = 30.dp,
                     end = 20.dp
