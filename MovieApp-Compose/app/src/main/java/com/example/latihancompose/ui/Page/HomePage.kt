@@ -209,8 +209,7 @@ fun CardMovie(
 ) {
     Column (
         modifier = Modifier
-            .height(200.dp)
-            .verticalScroll(state = rememberScrollState()),
+            .height(200.dp),
         horizontalAlignment = Alignment.Start,
     ) {
         Card (modifier = Modifier
