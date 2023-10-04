@@ -55,7 +55,7 @@ import com.example.latihancompose.ui.theme.White
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomePage(navController: NavController) {
-     Scaffold(
+    Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
                 title = {
@@ -69,7 +69,7 @@ fun HomePage(navController: NavController) {
                     )
                 },
                 colors = TopAppBarDefaults.smallTopAppBarColors(
-                    Color(0xFF1B0B03)
+                    Color(0xFF0F0602)
                 ),
                 actions = {
                     IconButton(onClick = { }) {
@@ -133,7 +133,7 @@ fun MainContent(navController: NavController) {
         modifier = Modifier
             .fillMaxSize()
             .padding(top = 60.dp),
-        color = Color(0xFF1B0B03)
+        color = Color(0xFF0F0602)
     ) {
         Column(
             modifier = Modifier
@@ -154,14 +154,16 @@ fun MainContent(navController: NavController) {
                 )
             )
             LazyRow {
-                items(items = dataList){
+                items(items = dataList) {
                     CardMovie(movie = it)
                 }
             }
             Text(
                 text = "Movie Horror",
-                modifier = Modifier.padding(top = 35.dp,
-                    bottom = 20.dp),
+                modifier = Modifier.padding(
+                    top = 35.dp,
+                    bottom = 20.dp
+                ),
                 style = TextStyle(
                     color = White,
                     fontSize = 15.sp,
@@ -170,14 +172,16 @@ fun MainContent(navController: NavController) {
                 )
             )
             LazyRow {
-                items(items = dataMovieHorror){
-                CardMovieHorror(movie = it)
+                items(items = dataMovieHorror) {
+                    CardMovieHorror(movie = it)
                 }
             }
             Text(
                 text = "Movie Adventure",
-                modifier = Modifier.padding(top = 35.dp,
-                    bottom = 20.dp),
+                modifier = Modifier.padding(
+                    top = 35.dp,
+                    bottom = 20.dp
+                ),
                 style = TextStyle(
                     color = White,
                     fontSize = 15.sp,
@@ -186,12 +190,14 @@ fun MainContent(navController: NavController) {
                 )
             )
             LazyRow {
-                items(items = dataMovieAdventure){
+                items(items = dataMovieAdventure) {
                     CardMovieAdventure(movie = it)
                 }
             }
-            Spacer(modifier = Modifier
-                .padding(top = 50.dp))
+            Spacer(
+                modifier = Modifier
+                    .padding(top = 50.dp)
+            )
         }
     }
 }
@@ -206,17 +212,18 @@ fun PreviewHomePage() {
 @Composable
 fun CardMovie(
     movie: Movie = getMovies()[0],
-    onItemClick: @Composable ()-> Unit = {}
+    onItemClick: @Composable () -> Unit = {}
 ) {
-    Column (
+    Column(
         modifier = Modifier
             .height(200.dp),
         horizontalAlignment = Alignment.Start,
     ) {
-        Card (modifier = Modifier
-            .width(150.dp)
-            .height(170.dp)
-            .padding(end = 15.dp),
+        Card(
+            modifier = Modifier
+                .width(150.dp)
+                .height(170.dp)
+                .padding(end = 15.dp),
             colors = CardDefaults.cardColors(
                 Color.White
             ),
@@ -227,39 +234,44 @@ fun CardMovie(
                 10.dp
             )
         ) {
-            Surface (
+            Surface(
                 modifier = Modifier.fillMaxSize()
             ) {
-                Image(painter = rememberImagePainter(
-                    data = movie.images[1],
-                ),
+                Image(
+                    painter = rememberImagePainter(
+                        data = movie.images[1],
+                    ),
                     contentScale = ContentScale.Crop,
-                    contentDescription = "")
+                    contentDescription = ""
+                )
             }
         }
-        Text(text = movie.title,
+        Text(
+            text = movie.title,
             style = TextStyle(
                 fontSize = 17.sp,
                 color = White
-            ), modifier = Modifier.padding(top = 10.dp)
-            )
+            ),
+            modifier = Modifier.padding(top = 10.dp)
+        )
     }
 }
 
 @Composable
 fun CardMovieHorror(
     movie: Movie = getMoviesHorror()[0],
-    onItemClick: @Composable ()-> Unit = {}
+    onItemClick: @Composable () -> Unit = {}
 ) {
-    Column (
+    Column(
         modifier = Modifier
             .height(200.dp),
         horizontalAlignment = Alignment.Start,
     ) {
-        Card (modifier = Modifier
-            .width(150.dp)
-            .height(170.dp)
-            .padding(end = 15.dp),
+        Card(
+            modifier = Modifier
+                .width(150.dp)
+                .height(170.dp)
+                .padding(end = 15.dp),
             colors = CardDefaults.cardColors(
                 Color.White
             ),
@@ -270,17 +282,20 @@ fun CardMovieHorror(
                 10.dp
             )
         ) {
-            Surface (
+            Surface(
                 modifier = Modifier.fillMaxSize()
             ) {
-                Image(painter = rememberImagePainter(
-                    data = movie.poster,
-                ),
+                Image(
+                    painter = rememberImagePainter(
+                        data = movie.poster,
+                    ),
                     contentScale = ContentScale.Crop,
-                    contentDescription = "")
+                    contentDescription = ""
+                )
             }
         }
-        Text(text = movie.title,
+        Text(
+            text = movie.title,
             style = TextStyle(
                 fontSize = 17.sp,
                 color = White
@@ -292,17 +307,18 @@ fun CardMovieHorror(
 @Composable
 fun CardMovieAdventure(
     movie: Movie = getMoviesAventure()[0],
-    onItemClick: @Composable ()-> Unit = {}
+    onItemClick: @Composable () -> Unit = {}
 ) {
-    Column (
+    Column(
         modifier = Modifier
             .height(200.dp),
         horizontalAlignment = Alignment.Start,
     ) {
-        Card (modifier = Modifier
-            .width(150.dp)
-            .height(170.dp)
-            .padding(end = 15.dp),
+        Card(
+            modifier = Modifier
+                .width(150.dp)
+                .height(170.dp)
+                .padding(end = 15.dp),
             colors = CardDefaults.cardColors(
                 Color.White
             ),
@@ -313,17 +329,20 @@ fun CardMovieAdventure(
                 10.dp
             )
         ) {
-            Surface (
+            Surface(
                 modifier = Modifier.fillMaxSize()
             ) {
-                Image(painter = rememberImagePainter(
-                    data = movie.poster,
-                ),
+                Image(
+                    painter = rememberImagePainter(
+                        data = movie.poster,
+                    ),
                     contentScale = ContentScale.Crop,
-                    contentDescription = "")
+                    contentDescription = ""
+                )
             }
         }
-        Text(text = movie.title,
+        Text(
+            text = movie.title,
             style = TextStyle(
                 fontSize = 17.sp,
                 color = White
