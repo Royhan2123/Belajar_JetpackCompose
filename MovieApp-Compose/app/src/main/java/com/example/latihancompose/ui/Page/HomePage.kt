@@ -2,7 +2,7 @@ package com.example.latihancompose.ui.Page
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -45,6 +45,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import coil.compose.rememberImagePainter
+import com.example.latihancompose.ui.NavigationScreen
 import com.example.latihancompose.ui.model.Movie
 import com.example.latihancompose.ui.model.getMovies
 import com.example.latihancompose.ui.model.getMoviesAventure
@@ -155,7 +156,11 @@ fun MainContent(navController: NavController) {
             )
             LazyRow {
                 items(items = dataList) {
-                    CardMovie(movie = it)
+                    CardMovie(movie = it) { movie ->
+                        navController.navigate(
+                            NavigationScreen.DetailPage.name + "/$movie"
+                        )
+                    }
                 }
             }
             Text(
@@ -212,17 +217,20 @@ fun PreviewHomePage() {
 @Composable
 fun CardMovie(
     movie: Movie = getMovies()[0],
-    onItemClick: @Composable () -> Unit = {}
+    onItemClick: (String) -> Unit = {}
 ) {
     Column(
         modifier = Modifier
-            .height(200.dp),
+            .height(220.dp),
         horizontalAlignment = Alignment.Start,
     ) {
         Card(
             modifier = Modifier
                 .width(150.dp)
                 .height(170.dp)
+                .clickable {
+                    onItemClick(movie.id)
+                }
                 .padding(end = 15.dp),
             colors = CardDefaults.cardColors(
                 Color.White
