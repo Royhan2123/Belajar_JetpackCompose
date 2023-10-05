@@ -20,7 +20,7 @@ fun MovieNavigation() {
             HomeScreen(navController = navController)
         }
         composable(MoviesScreens.DetailScreen.name+"/{movie}",
-            arguments = listOf(navArgument(name = "movie") {type = NavType.StringType})) {
+            arguments = listOf(navArgument(name     = "movie") {type = NavType.StringType})) {
                 backStackEntry ->
             DetailScreen(navController = navController,
                 backStackEntry.arguments?.getString("movie"))
