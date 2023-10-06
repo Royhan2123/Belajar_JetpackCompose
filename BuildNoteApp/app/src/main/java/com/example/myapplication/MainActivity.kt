@@ -1,5 +1,6 @@
 package com.example.myapplication
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -10,15 +11,19 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.myapplication.screen.NoteScreen
 import com.example.myapplication.ui.theme.MyApplicationTheme
+import com.example.myapplication.ui.theme.White
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MainContent {
-
-            }
+            NoteScreen(
+                notes = emptyList(),
+                onRemoveNote = {},
+                onAddNote = {},
+            )
         }
     }
 }
@@ -28,7 +33,11 @@ fun MainContent(
     content: @Composable () -> Unit
 ) {
     MyApplicationTheme {
-        content()
+        NoteScreen(
+            notes = emptyList(),
+            onRemoveNote = {},
+            onAddNote = {},
+        )
     }
 }
 
