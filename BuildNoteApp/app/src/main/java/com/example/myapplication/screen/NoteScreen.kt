@@ -1,5 +1,6 @@
 package com.example.myapplication.screen
 
+import android.widget.Toast
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -30,6 +31,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
@@ -58,6 +60,7 @@ fun NoteScreen(
     var description by remember {
         mutableStateOf("")
     }
+    val context = LocalContext.current
     Surface(
         modifier = Modifier.fillMaxSize(),
         color = White
@@ -79,7 +82,7 @@ fun NoteScreen(
                     )
                 },
                 colors = TopAppBarDefaults.smallTopAppBarColors(
-                    containerColor = androidx.compose.ui.graphics.Color.White
+                    containerColor = Color.White
                 ),
             )
             Column(
@@ -119,9 +122,14 @@ fun NoteScreen(
                 NoteButton(
                     text = "Save", onClick = {
                         if (title.isNotEmpty() && description.isNotEmpty()) {
+                            onAddNote(
+                                Note(
+                                    title = title, description = description
+                                )
+                            )
                             title = ""
                             description = ""
-
+                            Toast.makeText(context,"Note Added",Toast.LENGTH_SHORT).show()
                         }
                     },
                     modifier = Modifier
@@ -140,7 +148,9 @@ fun NoteScreen(
                     modifier = Modifier.padding(top = 50.dp)
                 ) {
                     items(notes) { note ->
-                       NoteRow(note = note, onNoteClick = {})
+                        NoteRow(note = note, onNoteClick = {
+                            onRemoveNote(note)
+                        })
                     }
                 }
             }
