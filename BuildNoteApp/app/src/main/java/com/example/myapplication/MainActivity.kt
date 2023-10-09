@@ -22,7 +22,7 @@ class MainActivity : ComponentActivity() {
             NoteScreen(
                 notes = notes,
                 onRemoveNote = {
-                               notes.remove(it)
+                    notes.remove(it)
                 },
                 onAddNote = {
                     notes.add(it)
@@ -32,6 +32,11 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+
+@Composable
+fun NotesApp(){
+
+}
 @Composable
 fun MainContent(
     content: @Composable () -> Unit
