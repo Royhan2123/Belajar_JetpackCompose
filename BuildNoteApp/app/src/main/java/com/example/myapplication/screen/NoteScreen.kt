@@ -129,7 +129,7 @@ fun NoteScreen(
                             )
                             title = ""
                             description = ""
-                            Toast.makeText(context,"Note Added",Toast.LENGTH_SHORT).show()
+                            Toast.makeText(context, "Note Added", Toast.LENGTH_SHORT).show()
                         }
                     },
                     modifier = Modifier
@@ -175,7 +175,7 @@ fun NoteRow(
         Column(
             modifier
                 .clickable {
-
+                    onNoteClick(note)
                 }
                 .padding(horizontal = 14.dp, vertical = 10.dp),
             horizontalAlignment = Alignment.Start
