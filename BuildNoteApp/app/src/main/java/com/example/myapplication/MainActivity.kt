@@ -3,12 +3,14 @@ package com.example.myapplication
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.myapplication.data.NotesDataSource
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.myapplication.model.Note
+import com.example.myapplication.model.NoteViewModel
 import com.example.myapplication.screen.NoteScreen
 import com.example.myapplication.ui.theme.MyApplicationTheme
 
@@ -16,17 +18,9 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            val notes = remember {
-                mutableStateListOf<Note>()
-            }
-            NoteScreen(
-                notes = notes,
-                onRemoveNote = {
-                    notes.remove(it)
-                },
-                onAddNote = {
-                    notes.add(it)
-                },
+            val noteViewModel: NoteViewModel by viewModels()
+            NotesApp(
+                noteViewModel
             )
         }
     }
@@ -34,9 +28,19 @@ class MainActivity : ComponentActivity() {
 
 
 @Composable
-fun NotesApp(){
-
+fun NotesApp(noteViewModel: NoteViewModel = viewModel()) {
+    val noteList = noteViewModel.getAllNotes()
+    NoteScreen(
+        notes = noteList,
+        onRemoveNote = {
+            noteViewModel.removeNote(it)
+        },
+        onAddNote = {
+            noteViewModel.addNote(it)
+        },
+    )
 }
+
 @Composable
 fun MainContent(
     content: @Composable () -> Unit

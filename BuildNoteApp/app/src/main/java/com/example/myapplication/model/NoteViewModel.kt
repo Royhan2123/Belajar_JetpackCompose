@@ -4,7 +4,7 @@ import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.ViewModel
 import com.example.myapplication.data.NotesDataSource
 
-class NoteScreenViewModel : ViewModel() {
+class NoteViewModel : ViewModel() {
     var notelist = mutableStateListOf<Note>()
 
     init {
