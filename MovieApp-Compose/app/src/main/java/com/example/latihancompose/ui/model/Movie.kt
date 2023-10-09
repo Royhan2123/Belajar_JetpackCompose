@@ -61,7 +61,7 @@ fun getMovies(): List<Movie> {
             rating = "8.1"),
 
         Movie(id = "tt0993846",
-            title = "The Wolf of Wall Street",
+            title = "The Wolf of Wall",
             year = "2013",
             genre = "Biography, Comedy, Crime",
             director = "Martin Scorsese",

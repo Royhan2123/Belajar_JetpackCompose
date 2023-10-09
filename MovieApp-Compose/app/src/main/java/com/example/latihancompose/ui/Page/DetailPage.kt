@@ -3,6 +3,7 @@ package com.example.latihancompose.ui.Page
 import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -36,7 +37,7 @@ import com.example.latihancompose.ui.theme.White
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun ScafoldDetail(
+fun DetailPage(
     navController: NavController,
     movieId: String?
 ) {
@@ -68,22 +69,21 @@ fun ScafoldDetail(
             )
         }
     ) {
-//        DetailPage(
-//            navController = navController,
-//            movieId = movieId
-//        )
+        ContentDetailPage(
+            navController= navController,
+            movieId = "123"
+        )
     }
 }
 
 @Composable
-fun DetailPage(
+fun ContentDetailPage(
     navController: NavController,
     movieId: String?,
 ) {
     val newMovieList = getMovies().filter { movie ->
         movie.id == movieId
     }
-
     val movieImage = newMovieList[0].images[1]
     Surface(
         modifier = Modifier.fillMaxSize(),
@@ -94,24 +94,27 @@ fun DetailPage(
                 .fillMaxSize(),
             horizontalAlignment = Alignment.Start,
         ) {
-//            Surface(
-//                modifier = Modifier
-//                    .fillMaxWidth()
-//                    .height(200.dp),
-//                color = Color.Black,
-//            ) {
-//                Image(
-//                    painter = rememberImagePainter(
-//                        data = movieImage
-//                    ),
-//                    contentScale = ContentScale.Crop,
-//                    contentDescription = "Data"
-//                )
-//            }
+            Surface(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(200.dp),
+                color = Color.Black,
+            ) {
+                Image(
+                    painter = rememberImagePainter(
+                        data = movieImage
+                    ),
+                    contentScale = ContentScale.Crop,
+                    contentDescription = "Data"
+                )
+            }
             Column(
                 modifier = Modifier.padding(20.dp)
             ) {
+                Row (modifier = Modifier
+                    .fillMaxWidth()){
 
+                }
             }
         }
     }
@@ -120,11 +123,7 @@ fun DetailPage(
 @Preview
 @Composable
 fun PreviewDetailPage() {
-//    DetailPage(
-//        navController = rememberNavController(),
-//        movieId = "123"
-//    )
-    ScafoldDetail(
+    DetailPage(
         navController = rememberNavController(),
         movieId = "123"
     )
