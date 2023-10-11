@@ -193,15 +193,15 @@ fun NoteRow(
 
                 )
             )
-            Text(
-                text = note.entryDate.format(
-                    DateTimeFormatter.ofPattern("EEE,d MMM")
-                ), style = TextStyle(
-                    fontSize = 13.sp,
-                    color = Black
-
-                )
-            )
+//            Text(
+//                text = note.entryDate.format(
+//                    DateTimeFormatter.ofPattern("EEE,d MMM")
+//                ), style = TextStyle(
+//                    fontSize = 13.sp,
+//                    color = Black
+//
+//                )
+//            )
         }
     }
 }

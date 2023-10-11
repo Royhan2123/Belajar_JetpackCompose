@@ -14,6 +14,7 @@ import com.example.myapplication.model.NoteViewModel
 import com.example.myapplication.screen.NoteScreen
 import com.example.myapplication.ui.theme.MyApplicationTheme
 import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.HiltAndroidApp
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {

@@ -55,6 +55,11 @@ android {
 dependencies {
     val roomVersion = "2.5.2"
 
+    // HILT
+    implementation ("com.google.dagger:hilt-android:2.48.1")
+    annotationProcessor ("com.google.dagger:hilt-compiler:2.48.1")
+    kapt ("com.google.dagger:hilt-android-compiler:2.38.1")
+
     // ROOM
 
     //noinspection KaptUsageInsteadOfKsp
@@ -84,8 +89,7 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2")
-    implementation("com.google.dagger:hilt-android:2.44")
-    kapt("com.google.dagger:hilt-android-compiler:2.44")
+
 }
 
 kapt {
