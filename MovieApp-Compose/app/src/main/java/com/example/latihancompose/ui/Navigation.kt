@@ -6,12 +6,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.example.latihancompose.ui.Login
-import com.example.latihancompose.ui.NavigationScreen
 import com.example.latihancompose.ui.Page.DetailPage
 import com.example.latihancompose.ui.Page.HomePage
-import com.example.latihancompose.ui.Register
-import com.example.latihancompose.ui.SplashScreen
 
 @Composable
 fun Navigations() {

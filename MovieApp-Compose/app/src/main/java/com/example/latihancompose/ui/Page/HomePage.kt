@@ -247,7 +247,7 @@ fun CardMovie(
             ) {
                 Image(
                     painter = rememberImagePainter(
-                        data = movie.images[1],
+                        data = movie.image,
                     ),
                     contentScale = ContentScale.Crop,
                     contentDescription = ""
@@ -295,7 +295,7 @@ fun CardMovieHorror(
             ) {
                 Image(
                     painter = rememberImagePainter(
-                        data = movie.poster,
+                        data = movie.image,
                     ),
                     contentScale = ContentScale.Crop,
                     contentDescription = ""
@@ -342,7 +342,7 @@ fun CardMovieAdventure(
             ) {
                 Image(
                     painter = rememberImagePainter(
-                        data = movie.poster,
+                        data = movie.image,
                     ),
                     contentScale = ContentScale.Crop,
                     contentDescription = ""

@@ -20,6 +20,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
@@ -34,7 +35,8 @@ fun TextFieldStyle(
     keyboardType: KeyboardType,
     imeAction: ImeAction = ImeAction.Next,
     onAction: KeyboardActions = KeyboardActions.Default,
-    trailingIcon: @Composable ()-> Unit
+    trailingIcon: @Composable ()-> Unit,
+    visualTransformation: VisualTransformation
 ) {
     val interactionSource = remember { MutableInteractionSource() }
     val isFocused = interactionSource.collectIsFocusedAsState()
@@ -67,6 +69,7 @@ fun TextFieldStyle(
                 15.dp
             )
         ),
-        trailingIcon = trailingIcon
+        trailingIcon = trailingIcon,
+        visualTransformation = visualTransformation
     )
 }

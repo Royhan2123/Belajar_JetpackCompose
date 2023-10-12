@@ -16,9 +16,11 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
+import androidx.compose.material.IconButton
 import androidx.compose.material.Surface
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Email
+import androidx.compose.material.icons.rounded.Visibility
 import androidx.compose.material.icons.rounded.VisibilityOff
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -33,6 +35,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -49,6 +53,7 @@ fun Register(navController: NavController) {
     val txtEmail = remember {
         mutableStateOf("")
     }
+    val isPasswordVisible = remember { mutableStateOf(false) }
     val txtPassword = remember {
         mutableStateOf("")
     }
@@ -81,7 +86,7 @@ fun Register(navController: NavController) {
                     contentAlignment = Alignment.Center
                 ) {
                     Text(
-                        text = "Login Your Account",
+                        text = "Create Your Account",
                         style = TextStyle(
                             fontSize = 20.sp,
                             color = Color.Black,
@@ -97,7 +102,8 @@ fun Register(navController: NavController) {
                     labelId = "Name",
                     isSingleLine = true,
                     keyboardType = KeyboardType.Text,
-                    trailingIcon = {}
+                    trailingIcon = {},
+                    visualTransformation = VisualTransformation.None
                 )
                 TextFieldStyle(
                     enabled = true,
@@ -109,11 +115,12 @@ fun Register(navController: NavController) {
                     trailingIcon = {
                         Icon(
                             imageVector = Icons.Rounded.Email,
-                            contentDescription = "Email"
+                            contentDescription = "email"
                         )
                     },
                     keyboardType = KeyboardType.Email,
-                )
+                    visualTransformation = VisualTransformation.None
+                 )
                 TextFieldStyle(
                     enabled = true,
                     modifier = Modifier
@@ -122,12 +129,22 @@ fun Register(navController: NavController) {
                     labelId = "Password",
                     isSingleLine = true,
                     trailingIcon = {
-                        Icon(
-                            imageVector = Icons.Rounded.VisibilityOff,
-                            contentDescription = "Password"
-                        )
+                        val visibilityIcon = if (isPasswordVisible.value) {
+                            Icons.Rounded.Visibility
+                        } else {
+                            Icons.Rounded.VisibilityOff
+                        }
+                        IconButton(onClick = {
+                            isPasswordVisible.value = !isPasswordVisible.value
+                        }) {
+                            Icon(
+                                imageVector = visibilityIcon,
+                                contentDescription = "password",
+                            )
+                        }
                     },
                     keyboardType = KeyboardType.Password,
+                    visualTransformation = if (isPasswordVisible.value) VisualTransformation.None else PasswordVisualTransformation()
                 )
                 ButtonStyle(
                     txt = "Login",

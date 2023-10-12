@@ -22,6 +22,12 @@ import kotlinx.coroutines.delay
 fun SplashScreen(navController: NavController) {
     LaunchedEffect(key1 = true){
         delay(5000L)
+        navController.graph.startDestinationRoute?.let {
+            navController.popBackStack(
+                route = it,
+                inclusive = true
+            )
+        }
         navController.navigate(NavigationScreen.Login.name)
     }
     Surface(
