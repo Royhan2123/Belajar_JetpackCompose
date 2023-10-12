@@ -72,7 +72,7 @@ fun DetailPage(
                     )
                 },
                 colors = TopAppBarDefaults.smallTopAppBarColors(
-                    Color.Black
+                    Color(0xFF0F0602)
                 ),
                 navigationIcon = {
                     IconButton(onClick = {
@@ -102,20 +102,23 @@ fun ContentDetailPage(movie: Movie) {
     }
     Surface(
         modifier = Modifier.fillMaxSize(),
-        color = Color.Black,
+        color = Color(0xFF0F0602),
     ) {
         Column(
             modifier = Modifier.fillMaxSize(),
             horizontalAlignment = Alignment.Start,
         ) {
-            Image(
-                painter = rememberImagePainter(data = movie.image),
-                contentScale = ContentScale.Fit,
-                contentDescription = "Movie Poster",
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(300.dp)
-            )
+            Surface (
+                modifier = Modifier.fillMaxWidth()
+                    .height(250.dp)
+            ) {
+                Image(
+                    painter = rememberImagePainter(data = movie.image),
+                    contentScale = ContentScale.Crop,
+                    contentDescription = "Movie Poster",
+
+                )
+            }
             Surface(
                 modifier = Modifier
                     .fillMaxSize()
@@ -128,7 +131,8 @@ fun ContentDetailPage(movie: Movie) {
             ) {
                 Column(
                     modifier =
-                    Modifier.padding(20.dp)
+                    Modifier
+                        .padding(20.dp)
                         .verticalScroll(rememberScrollState())
                 ) {
                     Text(

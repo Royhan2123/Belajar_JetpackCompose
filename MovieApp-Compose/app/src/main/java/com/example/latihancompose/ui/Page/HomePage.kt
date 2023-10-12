@@ -23,6 +23,7 @@ import androidx.compose.material.icons.filled.AttachFile
 import androidx.compose.material.icons.filled.CalendarMonth
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.MoreVert
+import androidx.compose.material.icons.rounded.AccountCircle
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CenterAlignedTopAppBar
@@ -74,12 +75,17 @@ fun HomePage(navController: NavController) {
                 ),
                 actions = {
                     IconButton(onClick = { }) {
-                        Icon(
-                            imageVector = Icons.Filled.AttachFile,
-                            contentDescription = "Account",
-                            modifier = Modifier.size(35.dp),
-                            Color(0xFFD3D2D2)
-                        )
+                        IconButton(onClick = {
+                            navController.navigate(NavigationScreen.Account.name)
+                        }) {
+                            Icon(
+                                imageVector = Icons.Rounded.AccountCircle,
+                                contentDescription = "Account",
+                                modifier = Modifier.size(35.dp),
+                                Color(0xFFD3D2D2)
+                            )
+
+                        }
                     }
                     Spacer(
                         modifier = Modifier.padding(

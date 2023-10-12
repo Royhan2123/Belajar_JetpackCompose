@@ -6,6 +6,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.example.latihancompose.ui.Page.Account
 import com.example.latihancompose.ui.Page.DetailPage
 import com.example.latihancompose.ui.Page.HomePage
 
@@ -38,6 +39,9 @@ fun Navigations() {
         }
         composable(NavigationScreen.Register.name) {
             Register(navController = navController)
+        }
+        composable(NavigationScreen.Account.name) {
+            Account(navController = navController)
         }
 
     }
