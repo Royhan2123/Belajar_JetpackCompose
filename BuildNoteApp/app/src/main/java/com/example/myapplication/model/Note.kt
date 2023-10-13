@@ -19,6 +19,6 @@ data class Note(
     val description:String,
 
     @ColumnInfo(name = "note_entry_date")
-    val entryDate: Long = System.currentTimeMillis()
+    val entryDate: Date = Date.from(Instant.now())
 
 )
