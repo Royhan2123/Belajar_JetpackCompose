@@ -16,16 +16,16 @@ import javax.inject.Singleton
 object AppModule {
     @Singleton
     @Provides
-    fun provideNotesDao(noteDatabase: NoteDatabase): NoteDatabaseDao = noteDatabase.noteDao()
+    fun provideNotesDao(noteDatabase: NoteDatabase): NoteDatabaseDao
+    = noteDatabase.noteDao()
 
     @Singleton
     @Provides
-    fun provideAppDatabase(@ApplicationContext context: Context): NoteDatabase =
-        Room.databaseBuilder(
+    fun provideAppDatabase(@ApplicationContext context: Context): NoteDatabase
+    = Room.databaseBuilder(
             context,
             NoteDatabase::class.java,
-            "notes_db"
-        )
+            "notes_db")
             .fallbackToDestructiveMigration()
             .build()
 }
