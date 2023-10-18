@@ -41,6 +41,7 @@ import androidx.compose.ui.unit.sp
 import com.example.myapplication.R
 import com.example.myapplication.components.NoteButton
 import com.example.myapplication.components.NoteInputText
+import com.example.myapplication.components.util.formatDate
 import com.example.myapplication.data.NotesDataSource
 import com.example.myapplication.model.Note
 import com.example.myapplication.ui.theme.Black
@@ -193,15 +194,13 @@ fun NoteRow(
 
                 )
             )
-//            Text(
-//                text = note.entryDate.format(
-//                    DateTimeFormatter.ofPattern("EEE,d MMM")
-//                ), style = TextStyle(
-//                    fontSize = 13.sp,
-//                    color = Black
-//
-//                )
-//            )
+            Text(
+                text = formatDate(note.entryDate.time),
+                style = TextStyle(
+                    fontSize = 13.sp,
+                    color = Black
+                )
+            )
         }
     }
 }
