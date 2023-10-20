@@ -33,7 +33,7 @@ class ContactViewModel(
             contacts = contacts,
             sortType = sortType
         )
-    }
+    }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), ContactState())
 
     fun onEvent(event: ContactEvent) {
         when (event) {
@@ -65,7 +65,29 @@ class ContactViewModel(
             }
 
             ContactEvent.saveContact -> {
+                val firstName = state.value.firstName
+                val lastName = state.value.lastName
+                val phoneNumber = state.value.phoneNumber
 
+                if (firstName.isBlank() || lastName.isBlank() || phoneNumber.isBlank()) {
+                    return
+                }
+                val contact = Contact(
+                    firstname = firstName,
+                    lastname = lastName,
+                    phoneNumber = phoneNumber
+                )
+                viewModelScope.launch {
+                    dao.upsertContact(contact)
+                }
+                _state.update {
+                    it.copy(
+                        isAddingContact = false,
+                        firstName = "",
+                        lastName = "",
+                        phoneNumber = "",
+                    )
+                }
             }
 
             is ContactEvent.setFirstName -> {
@@ -80,7 +102,7 @@ class ContactViewModel(
             is ContactEvent.setLastName -> {
                 _state.update {
                     it.copy(
-                        firstName = event.lastName
+                        lastName = event.lastName
                     )
 
                 }
@@ -89,7 +111,7 @@ class ContactViewModel(
             is ContactEvent.setPhoneNumber -> {
                 _state.update {
                     it.copy(
-                        firstName = event.phoneNumber
+                        phoneNumber = event.phoneNumber
                     )
 
                 }
