@@ -30,5 +30,4 @@ fun Account(navController: NavController){
 @Preview
 @Composable
 fun PreviewsDetail(){
-    HomePage(navController = rememberNavController())
 }

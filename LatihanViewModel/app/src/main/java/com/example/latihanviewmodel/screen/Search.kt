@@ -30,5 +30,4 @@ fun Search(navController: NavController){
 @Preview
 @Composable
 fun PreviewsSearch(){
-    HomePage(navController = rememberNavController())
 }

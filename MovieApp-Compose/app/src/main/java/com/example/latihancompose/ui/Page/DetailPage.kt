@@ -96,7 +96,7 @@ fun DetailPage(
 }
 
 @Composable
-fun ContentDetailPage(movie: Movie) {
+fun ContentDetailPage(movie: Movie){
     var expanded by remember {
         mutableStateOf(false)
     }

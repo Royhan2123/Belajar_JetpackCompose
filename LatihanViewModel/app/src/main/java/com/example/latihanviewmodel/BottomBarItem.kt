@@ -28,54 +28,54 @@ import com.example.latihanviewmodel.screen.HomePage
 import com.example.latihanviewmodel.screen.Search
 import com.example.latihanviewmodel.ui.theme.Cyan
 
-sealed class BottomNavItem(
-    var title: String,
-    var icon: ImageVector,
-    var routes: String,
+sealed class BottomBarItem(
+    val icon: ImageVector,
+    val title: String,
+    val routes: String
 ) {
-    object Home : BottomNavItem("Home", Icons.Rounded.Home, "home")
-    object Search : BottomNavItem("Search", Icons.Rounded.Search, "Search")
-    object Account : BottomNavItem("Account", Icons.Rounded.AccountCircle, "Account")
+    object Home : BottomBarItem(icon = Icons.Rounded.Home, "Home", "home")
+    object Search : BottomBarItem(icon = Icons.Rounded.Search, "Search", "search")
+    object Account : BottomBarItem(icon = Icons.Rounded.AccountCircle, "Account", "account")
 }
 
 @Composable
 fun NavigationGraph(navController: NavHostController) {
     NavHost(
         navController = navController,
-        startDestination = BottomNavItem.Home.routes
+        startDestination = BottomBarItem.Home.routes
     ) {
-        composable(BottomNavItem.Home.routes) {
+        composable(BottomBarItem.Home.routes) {
             HomePage(navController = navController)
         }
-        composable(BottomNavItem.Search.routes) {
+        composable(BottomBarItem.Search.routes) {
             Search(navController = navController)
         }
-        composable(BottomNavItem.Account.routes) {
+        composable(BottomBarItem.Account.routes) {
             Account(navController = navController)
         }
     }
 }
 
 @Composable
-fun BottomBar(navController: NavController) {
+fun BottomBars(navController: NavController) {
     val items = listOf(
-        BottomNavItem.Home,
-        BottomNavItem.Search,
-        BottomNavItem.Account,
+        BottomBarItem.Home,
+        BottomBarItem.Search,
+        BottomBarItem.Account,
     )
+
     BottomNavigation(
         backgroundColor = Color.White
     ) {
-        val navBackStackEntry by navController.currentBackStackEntryAsState()
-        val currentRoutes = navBackStackEntry?.destination?.route
-
+        val navBackStateEntry by navController.currentBackStackEntryAsState()
+        val screenRoute = navBackStateEntry?.destination?.route
         items.forEach { item ->
             BottomNavigationItem(
-                selected = currentRoutes == item.routes,
+                selected = item.routes == screenRoute,
                 onClick = {
                     navController.navigate(item.routes) {
-                        navController.graph.startDestinationRoute?.let { screenRoutes ->
-                            popUpTo(screenRoutes) {
+                        navController.graph.startDestinationRoute?.let { routing ->
+                            popUpTo(routing) {
                                 saveState = true
                             }
                             launchSingleTop = true
@@ -87,30 +87,28 @@ fun BottomBar(navController: NavController) {
                     Icon(
                         imageVector = item.icon,
                         contentDescription = item.title,
-                        tint = if (currentRoutes == item.routes) Cyan else Color.LightGray
+                        tint = if (screenRoute == item.routes) Cyan else Color.Gray
                     )
                 },
                 label = {
                     Text(
                         text = item.title,
-                        fontSize = 13.sp,
-                        color = if (currentRoutes == item.routes) Cyan else Color.LightGray
+                        color = if (screenRoute == item.routes) Cyan else Color.Gray
                     )
                 },
-                alwaysShowLabel = true
             )
         }
     }
 }
 
+
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HalamanBottom(){
+fun HalamanBottom() {
     val navController = rememberNavController()
-
-    Scaffold (
-        bottomBar = { BottomBar(navController = navController)}
+    Scaffold(
+        bottomBar = { BottomBars(navController = navController) }
     ) {
         NavigationGraph(navController = navController)
     }
