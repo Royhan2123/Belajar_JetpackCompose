@@ -1,7 +1,5 @@
 package com.example.latihanviewmodel.navigation
 
-import androidx.compose.runtime.Composable
-
 enum class NavigationSreen  {
     SplashScreen,
     HomePage,

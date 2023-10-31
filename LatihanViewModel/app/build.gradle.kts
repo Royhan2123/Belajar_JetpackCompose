@@ -57,9 +57,10 @@ dependencies {
     implementation("androidx.compose.material:material-icons-extended-android:1.5.4")
     implementation("androidx.compose.material:material:1.5.4")
 
-// Coroutine Lifecycle Scopes
+    // Coroutine Lifecycle Scopes
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2")
 
     //Dagger - Hilt
     implementation("com.google.dagger:hilt-android:2.48.1")

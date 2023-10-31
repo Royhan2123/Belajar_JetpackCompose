@@ -23,7 +23,7 @@ fun SplashScreen(
     navController: NavController
 ) {
     LaunchedEffect(key1 = true){
-        delay(3000L)
+        delay(5000L)
         navController.graph.startDestinationRoute?.let {
             navController.popBackStack(
                 route = it,
