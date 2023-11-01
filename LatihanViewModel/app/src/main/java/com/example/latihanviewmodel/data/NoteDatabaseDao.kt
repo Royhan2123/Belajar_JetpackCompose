@@ -11,7 +11,7 @@ import androidx.room.Update
 interface NoteDatabaseDao {
 
     @Query("SELECT * FROM table_note")
-    suspend fun getNotes(): List<Note>
+    fun getNotes(): List<Note>
 
     @Query("SELECT * FROM table_note where id =:id")
     suspend fun getNotesById(id:String):Note
