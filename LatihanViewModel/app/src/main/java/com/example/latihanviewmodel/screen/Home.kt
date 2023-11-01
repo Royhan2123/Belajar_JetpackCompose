@@ -20,24 +20,22 @@ fun HomePage(
     Column(
         modifier = Modifier.fillMaxSize()
     ) {
-        val noteViewModel:NoteViewModel = viewModel()
-        NotesApp(noteViewModel = noteViewModel)
+        val noteViewModel: NoteViewModel = viewModel()
+
+        NotesApp(noteViewModel)
     }
 }
 
 @Composable
-fun NotesApp(noteViewModel: NoteViewModel = viewModel()){
-    val notes = noteViewModel.getAllNote()
+fun NotesApp(noteViewModel: NoteViewModel = viewModel()) {
+
+    val notelist = noteViewModel
+        .getAllNote()
 
     NotesScreen(
-        notes = notes,
-        onAddNote = {
-            noteViewModel.removeNote(it)
-        },
-        onRemoveNote = {
-            noteViewModel.addNote(it)
-        }
-    )
+        notes = notelist,
+        onAddNote = { noteViewModel.addNote(it) },
+        onRemoveNote = {noteViewModel.removeNote(it)})
 }
 
 
