@@ -1,7 +1,5 @@
 package com.example.latihanviewmodel.data
 
-import com.example.latihanviewmodel.model.Note
-
 class NotesDataSource {
     fun loadNotes(): List<Note> {
         return listOf(

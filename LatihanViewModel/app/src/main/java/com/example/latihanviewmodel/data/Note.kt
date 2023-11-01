@@ -1,4 +1,4 @@
-package com.example.latihanviewmodel.model
+package com.example.latihanviewmodel.data
 
 import java.time.LocalDateTime
 import java.util.UUID
