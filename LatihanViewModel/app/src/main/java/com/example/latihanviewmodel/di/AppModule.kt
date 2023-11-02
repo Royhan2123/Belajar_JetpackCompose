@@ -17,15 +17,15 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideByNotes(noteDatabase: NoteDatabase):NoteDatabaseDao
-    = noteDatabase.noteDao()
+    fun provideNoteDao(noteDatabase: NoteDatabase): NoteDatabaseDao = noteDatabase.noteDao()
 
     @Singleton
     @Provides
-    fun provideByNoteDatabase(@ApplicationContext context: Context):NoteDatabase
-    = Room.databaseBuilder(
-        context,
-        NoteDatabase::class.java,
-        "note_database"
-    ).fallbackToDestructiveMigration().build()
+    fun provideAppDatabase(@ApplicationContext context: Context): NoteDatabase =
+        Room.databaseBuilder(
+            context,
+            NoteDatabase::class.java,
+            "note_database"
+        ).fallbackToDestructiveMigration()
+            .build()
 }
