@@ -11,6 +11,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.PathEffect
 import androidx.compose.ui.text.ParagraphStyle
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -57,6 +58,12 @@ fun QuestionDisplay() {
         }
     }
 }
+
+//@Composable
+//fun DrawDottedLine(pathEffect: PathEffect){
+//
+//}
+
 
 @Composable
 fun QuestionTracker(
