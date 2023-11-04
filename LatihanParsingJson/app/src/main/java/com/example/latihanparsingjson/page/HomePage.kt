@@ -16,6 +16,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.example.latihanparsingjson.component.Questions
 import com.example.latihanparsingjson.model.Question
 import com.example.latihanparsingjson.screens.QuestionViewModel
 
@@ -39,20 +40,6 @@ fun TriviaHome(viewModel: QuestionViewModel = hiltViewModel()) {
     Questions(viewModel)
 }
 
-@Composable
-fun Questions(viewModel: QuestionViewModel) {
-    val questions = viewModel.data.value.data?.toMutableList()
-    if (viewModel.data.value.loading == true) {
-        Log.d("Loading", "Question ... Loading")
-    } else {
-        Log.d("SIZE", "Question : Loading Stopped")
-        questions?.forEach { questionItem ->
-            Log.d("SIZE", "Question : ${questionItem.question}")
-        }
-    }
-    Log.d("SIZE", "Question : ${questions?.size}")
-
-}
 
 @Preview(showBackground = true)
 @Composable
