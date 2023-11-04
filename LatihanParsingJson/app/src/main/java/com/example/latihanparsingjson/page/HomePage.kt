@@ -19,6 +19,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.latihanparsingjson.component.Questions
 import com.example.latihanparsingjson.model.Question
 import com.example.latihanparsingjson.screens.QuestionViewModel
+import com.example.latihanparsingjson.screens.TriviaHome
 
 @Composable
 fun HomePage(navController: NavController) {
@@ -33,11 +34,6 @@ fun HomePage(navController: NavController) {
             TriviaHome()
         }
     }
-}
-
-@Composable
-fun TriviaHome(viewModel: QuestionViewModel = hiltViewModel()) {
-    Questions(viewModel)
 }
 
 
