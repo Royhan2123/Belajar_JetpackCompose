@@ -30,6 +30,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.latihanviewmodel.components.util.formatDate
 import com.example.latihanviewmodel.data.NotesDataSource
 import com.example.latihanviewmodel.data.Note
 
@@ -177,11 +178,10 @@ fun NoteRow(
                 text = note.description,
                 style = MaterialTheme.typography.subtitle1
             )
-//            Text(
-//                text = note.entryDate
-//                    .format(DateTimeFormatter.ofPattern("EEE, d MMM")),
-//                style = MaterialTheme.typography.caption
-//            )
+            Text(
+                text = formatDate(note.entryDate.time),
+                style = MaterialTheme.typography.caption
+            )
         }
     }
 }

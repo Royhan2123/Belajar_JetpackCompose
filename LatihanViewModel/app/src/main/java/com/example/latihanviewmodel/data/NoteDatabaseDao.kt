@@ -7,12 +7,13 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
 
 @Dao
 interface NoteDatabaseDao {
 
     @Query("SELECT * FROM table_note")
-    suspend fun getNotesByAll(): Flow<List<Note>>
+     fun getNotesByAll(): Flow<List<Note>>
 
     @Query("SELECT * FROM table_note where id =:id")
     suspend fun getNotesById(id: String):Note
