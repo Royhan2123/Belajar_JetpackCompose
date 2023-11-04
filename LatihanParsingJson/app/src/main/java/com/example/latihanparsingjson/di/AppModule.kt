@@ -1,6 +1,5 @@
 package com.example.latihanparsingjson.di
 
-import com.example.latihanparsingjson.model.Question
 import com.example.latihanparsingjson.network.QuestionApi
 import com.example.latihanparsingjson.repository.QuestionRepository
 import com.example.latihanparsingjson.util.Constant
