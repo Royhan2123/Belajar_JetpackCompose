@@ -27,7 +27,6 @@ fun HomePage(navController: NavController) {
     }
 }
 
-
 @Preview(showBackground = true)
 @Composable
 fun Previewss() {
