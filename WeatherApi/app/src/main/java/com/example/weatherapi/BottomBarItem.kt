@@ -35,8 +35,8 @@ sealed class BottomBarItem(
     val routes: String
 ) {
     object Home : BottomBarItem(icon = Icons.Rounded.Home, "Home", "home")
-    object Search : BottomBarItem(icon = Icons.Rounded.Search, "com.example.weatherapi.screen.Search", "search")
-    object Account : BottomBarItem(icon = Icons.Rounded.AccountCircle, "com.example.weatherapi.screen.Account", "account")
+    object Search : BottomBarItem(icon = Icons.Rounded.Search, "Search", "search")
+    object Account : BottomBarItem(icon = Icons.Rounded.AccountCircle, "Account", "account")
 }
 
 @Composable

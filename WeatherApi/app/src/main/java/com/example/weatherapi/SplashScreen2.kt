@@ -56,7 +56,7 @@ fun SplashScreen2(navController: NavController) {
                     )
                 )
                 Text(
-                    text = "A place where comfort and convenience meet\nTo ensure your stay is extraordinary With a user\nInterface Hotel App takes you into a world of\nPersonalized services.",
+                    text = "A place where comfort and convenience\nMeet To ensure your stay is extraordinary \nWith a userInterface Hotel App takes\nYou into a world of personalized services.",
                     color = Color.Gray, style = TextStyle(
                         fontSize = 17.sp,
                     ), textAlign = TextAlign.Justify
@@ -76,7 +76,7 @@ fun SplashScreen2(navController: NavController) {
                     },
                     modifier = Modifier
                         .width(300.dp)
-                        .height(35.dp),
+                        .height(37.dp),
                     shape = RoundedCornerShape(
                         corner = CornerSize(15.dp)
                     ),

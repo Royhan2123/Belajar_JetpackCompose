@@ -28,7 +28,7 @@ fun HomePage(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            Text(text = "INI HALAMAN SEARCH")
+            Text(text = "INI HALAMAN HOME")
         }
     }
 }
