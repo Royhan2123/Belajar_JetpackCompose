@@ -10,13 +10,14 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.weatherapi.navigation.Navigations
 import com.example.weatherapi.ui.theme.WeatherApiTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-
+            MyApp()
         }
     }
 }
@@ -24,7 +25,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun MyApp() {
     WeatherApiTheme {
-
+        Navigations()
     }
 }
 
