@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
+import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.RadioButton
 import androidx.compose.material.RadioButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
@@ -43,18 +44,23 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.latihanparsingjson.model.QuestionItem
-import com.example.latihanparsingjson.screens.QuestionViewModel
+import com.example.latihanparsingjson.screens.QuestionsViewModel
 import com.example.latihanparsingjson.util.AppColors
 
 @SuppressLint("AutoboxingStateCreation")
 @Composable
-fun Questions(viewModel: QuestionViewModel) {
+fun Questions(viewModel: QuestionsViewModel = hiltViewModel()) {
     val questions = viewModel.data.value.data?.toMutableList()
     val questionIndex = remember {
         mutableStateOf(0)
     }
-    if (viewModel.data.value.loading == true) {
+
+    // Memindahkan inisialisasi data ke dalam fungsi Compose
+    val loading = viewModel.data.value.loading
+
+    if (loading == true) {
         CircularProgressIndicator()
         Log.d("Loading", "Question ... Loading")
     } else {
@@ -65,7 +71,8 @@ fun Questions(viewModel: QuestionViewModel) {
         }
         if (questions != null) {
             QuestionDisplay(
-                question = question!!, questionIndex = questionIndex,
+                question = question!!,
+                questionIndex = questionIndex,
                 viewModel = viewModel
             ) {
                 questionIndex.value = questionIndex.value + 1
@@ -74,13 +81,11 @@ fun Questions(viewModel: QuestionViewModel) {
     }
 }
 
-//@Preview
-@SuppressLint("MutableCollectionMutableState")
 @Composable
 fun QuestionDisplay(
     question: QuestionItem,
     questionIndex: MutableState<Int>,
-    viewModel: QuestionViewModel,
+    viewModel: QuestionsViewModel = hiltViewModel(),
     onNextClicked: (Int) -> Unit = {},
 ) {
     val answerState = remember {
@@ -116,8 +121,8 @@ fun QuestionDisplay(
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.Start
         ) {
-            if (questionIndex.value >= 3 ) ShowProgress(score = questionIndex.value)
-            QuestionTracker(conter = questionIndex.value)
+            if (questionIndex.value >= 3) ShowProgress(score = questionIndex.value)
+            QuestionTracker(counter = questionIndex.value)
             DrawDottedLine(pathEffect)
             Column {
                 Text(
@@ -205,7 +210,7 @@ fun QuestionDisplay(
                         .padding(3.dp)
                         .align(alignment = Alignment.CenterHorizontally),
                     shape = RoundedCornerShape(34.dp),
-                    colors = androidx.compose.material.ButtonDefaults.buttonColors(
+                    colors = ButtonDefaults.buttonColors(
                         backgroundColor = AppColors.mLightBlue
                     )
                 ) {
@@ -237,11 +242,10 @@ fun DrawDottedLine(pathEffect: PathEffect) {
 }
 
 @SuppressLint("AutoboxingStateCreation")
-@Preview
 @Composable
 fun ShowProgress(score: Int = 12) {
     val progressFactor by remember(score) {
-    mutableStateOf(score * 0.005f)
+        mutableStateOf(score * 0.005f)
     }
     val gradient = Brush.linearGradient(listOf(Color(0xFFF95075),
         Color(0xFFBE6BE5)))
@@ -276,25 +280,29 @@ fun ShowProgress(score: Int = 12) {
                 .background(brush = gradient),
             enabled = false,
             elevation = null,
-            colors = androidx.compose.material.ButtonDefaults.buttonColors(
+            colors = ButtonDefaults.buttonColors(
                 backgroundColor = Color.Transparent,
                 disabledBackgroundColor = Color.Transparent
-            )) {
-    Text(text = (score * 10).toString(),
-        modifier = Modifier
-            .clip(shape = RoundedCornerShape(23.dp))
-            .fillMaxHeight(0.87f)
-            .fillMaxWidth()
-            .padding(6.dp),
-        color = AppColors.mWhite,
-        textAlign = TextAlign.Center)
+            )
+        ) {
+            Text(
+                text = (score * 10).toString(),
+                modifier = Modifier
+                    .clip(shape = RoundedCornerShape(23.dp))
+                    .fillMaxHeight(0.87f)
+                    .fillMaxWidth()
+                    .padding(6.dp),
+                color = AppColors.mWhite,
+                textAlign = TextAlign.Center
+            )
         }
     }
 }
 
 @Composable
 fun QuestionTracker(
-    conter: Int = 10, outOff: Int = 100
+    counter: Int = 10,
+    outOf: Int = 100
 ) {
     Text(text = buildAnnotatedString {
         withStyle(
@@ -307,7 +315,7 @@ fun QuestionTracker(
                     color = AppColors.mLightGray, fontWeight = FontWeight.Bold, fontSize = 27.sp
                 )
             ) {
-                append("Question $conter/")
+                append("Question $counter/")
                 withStyle(
                     style = SpanStyle(
                         color = AppColors.mLightGray,
@@ -315,7 +323,7 @@ fun QuestionTracker(
                         fontWeight = FontWeight.Light
                     )
                 ) {
-                    append("$outOff")
+                    append("$outOf")
                 }
             }
         }

@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class NoteViewModel @Inject constructor(private val repository: NoteRepository) : ViewModel() {
+class   NoteViewModel @Inject constructor(private val repository: NoteRepository) : ViewModel() {
     private val _noteList = MutableStateFlow<List<Note>>(emptyList())
     val noteList = _noteList.asStateFlow()
     // private var noteList = mutableStateListOf<Note>()

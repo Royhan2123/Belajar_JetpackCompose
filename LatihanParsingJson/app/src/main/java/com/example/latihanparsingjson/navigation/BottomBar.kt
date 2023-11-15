@@ -18,6 +18,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -26,6 +27,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.latihanparsingjson.page.AccountPage
 import com.example.latihanparsingjson.page.HomePage
+import com.example.latihanparsingjson.screens.QuestionsViewModel
 
 sealed class BottomNav(
     val title: String,
@@ -38,6 +40,7 @@ sealed class BottomNav(
 
 @Composable
 fun NavigationGraph(navController: NavHostController) {
+    val viewModel: QuestionsViewModel = hiltViewModel()
     NavHost(navController = navController, startDestination = BottomNav.Home.routing) {
         composable(BottomNav.Home.routing) {
             HomePage(navController = navController)

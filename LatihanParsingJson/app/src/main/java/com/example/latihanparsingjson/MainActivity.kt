@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.latihanparsingjson.component.Questions
 import com.example.latihanparsingjson.navigation.Navigations
 import com.example.latihanparsingjson.ui.theme.LatihanParsingJsonTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -30,8 +31,8 @@ fun MyApp(content: @Composable () -> Unit) {
 
 @Preview
 @Composable
-fun PreviewsMyApp(){
+fun PreviewsMyApp() {
     MyApp {
-        Navigations()
+        Questions()
     }
 }

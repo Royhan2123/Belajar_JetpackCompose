@@ -15,7 +15,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
-@HiltViewModel
+
 class NoteViewModel @Inject constructor(private val repository: NoteRepository) : ViewModel() {
     private val _notelist = MutableStateFlow<List<Note>>(emptyList())
     val notelist = _notelist.asStateFlow()
@@ -25,6 +25,7 @@ class NoteViewModel @Inject constructor(private val repository: NoteRepository) 
             repository.getAllNotes().distinctUntilChanged().collect { listOfNote ->
                 if (listOfNote.isEmpty()) {
                     Log.d("Empty", ": Empty list")
+
                 } else {
                     _notelist.value = listOfNote
                 }

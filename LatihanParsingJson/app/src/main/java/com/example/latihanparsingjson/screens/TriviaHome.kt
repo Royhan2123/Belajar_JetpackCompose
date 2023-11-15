@@ -6,7 +6,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.latihanparsingjson.component.Questions
 
 @Composable
-fun TriviaHome(viewModel: QuestionViewModel = hiltViewModel()) {
+fun TriviaHome(viewModel: QuestionsViewModel = hiltViewModel()) {
     Questions(viewModel)
 }
 
