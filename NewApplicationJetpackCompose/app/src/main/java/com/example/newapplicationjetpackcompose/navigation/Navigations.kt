@@ -1,11 +1,13 @@
 package com.example.newapplicationjetpackcompose.navigation
 
 import androidx.compose.runtime.Composable
-import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.newapplicationjetpackcompose.SplashScreen
+import com.example.newapplicationjetpackcompose.page.AccountPage
+import com.example.newapplicationjetpackcompose.page.HomePage
+import com.example.newapplicationjetpackcompose.page.SearchPage
 
 @Composable
 fun Navigation() {
@@ -17,6 +19,14 @@ fun Navigation() {
         composable(NavigationScreen.SplashScreen.name){
             SplashScreen(navController)
         }
-        composable()
+        composable(NavigationScreen.HomePage.name){
+            HomePage(navController)
+        }
+        composable(NavigationScreen.AccountPage.name){
+            AccountPage(navController)
+        }
+        composable(NavigationScreen.SearchPage.name){
+            SearchPage(navController)
+        }
     }
 }
