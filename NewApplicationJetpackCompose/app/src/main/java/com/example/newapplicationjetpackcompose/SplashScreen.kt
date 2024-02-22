@@ -10,9 +10,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 
 @Composable
-fun SplashScreen(){
+fun SplashScreen(navController: NavController){
     Column (
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
@@ -26,5 +28,5 @@ fun SplashScreen(){
 @Preview(showSystemUi = true)
 @Composable
 fun PreviewSplashScreen(){
-    SplashScreen()
+    SplashScreen(navController = rememberNavController())
 }
