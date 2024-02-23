@@ -21,6 +21,13 @@ import com.example.newapplicationjetpackcompose.page.AccountPage
 import com.example.newapplicationjetpackcompose.page.HomePage
 import com.example.newapplicationjetpackcompose.page.SearchPage
 
+
+sealed class NavigationsScreen(val title: String) {
+    object HomePage : NavigationsScreen("Home")
+    object SearchPage : NavigationsScreen("Detail")
+    object AccountPage : NavigationsScreen("Account")
+}
+
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -45,7 +52,6 @@ fun HalamanBottom() {
             AccountPage(navController = navController)
         }
     }
-
 
     Scaffold(
         bottomBar = {
@@ -89,10 +95,4 @@ fun HalamanBottom() {
             }
         }
     ) {}
-}
-
-sealed class NavigationsScreen(val title: String) {
-    object HomePage : NavigationsScreen("Home")
-    object SearchPage : NavigationsScreen("Detail")
-    object AccountPage : NavigationsScreen("Account")
 }
