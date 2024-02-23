@@ -58,9 +58,10 @@ fun HalamanBottom() {
                         selected = currentRoute == screen.title,
                         onClick = {
                             navController.navigate(screen.title) {
-popUpTo(navController.graph.startDestinationId){
-    saveState = true
-}
+                                popUpTo(navController.graph.startDestinationId) {
+                                    saveState = true
+                                }
+                                launchSingleTop = true
                             }
                         },
                         icon = {
