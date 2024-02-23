@@ -73,9 +73,7 @@ fun HalamanBottom() {
              }
          }
         }
-    ) {
-
-    }
+    ) {}
 }
 sealed class NavigationsScreen(val title: String) {
     object HomePage : NavigationsScreen("Home")
