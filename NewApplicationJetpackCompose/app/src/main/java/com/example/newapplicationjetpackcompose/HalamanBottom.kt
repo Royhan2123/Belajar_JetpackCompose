@@ -31,8 +31,10 @@ fun HalamanBottom() {
         NavigationsScreen.SearchPage,
         NavigationsScreen.AccountPage,
     )
-    NavHost(navController = navController,
-        startDestination = NavigationsScreen.HomePage.title ){
+    NavHost(
+        navController = navController,
+        startDestination = NavigationsScreen.HomePage.title
+    ) {
         composable(NavigationsScreen.HomePage.title) {
             HomePage(navController = navController)
         }
@@ -45,36 +47,47 @@ fun HalamanBottom() {
     }
 
 
-    Scaffold (
+    Scaffold(
         bottomBar = {
-         BottomNavigation {
-             val navBackStackEntry by navController.currentBackStackEntryAsState()
-             val currentRoute = navBackStackEntry?.destination?.route
+            BottomNavigation {
+                val navBackStackEntry by navController.currentBackStackEntryAsState()
+                val currentRoute = navBackStackEntry?.destination?.route
 
-             items.forEach { screen ->
-                 BottomNavigationItem(
-                     selected = currentRoute == screen.title ,
-                     onClick = {
+                items.forEach { screen ->
+                    BottomNavigationItem(
+                        selected = currentRoute == screen.title,
+                        onClick = {
+                            navController.navigate(screen.title) {
 
-                     },
-                     icon = {
-                         when(screen){
-                             NavigationsScreen.HomePage -> Icon(Icons.Default.Home,
-                                 contentDescription = "Home")
-                             NavigationsScreen.SearchPage -> Icon(Icons.Default.Search,
-                                 contentDescription = "Search")
-                             NavigationsScreen.AccountPage -> Icon(Icons.Default.AccountCircle,
-                                 contentDescription = "Account")
-                         }
-                     },
-                     label = {
-                         Text(text = screen.title)
-                     })
-             }
-         }
+                            }
+                        },
+                        icon = {
+                            when (screen) {
+                                NavigationsScreen.HomePage -> Icon(
+                                    Icons.Default.Home,
+                                    contentDescription = "Home"
+                                )
+
+                                NavigationsScreen.SearchPage -> Icon(
+                                    Icons.Default.Search,
+                                    contentDescription = "Search"
+                                )
+
+                                NavigationsScreen.AccountPage -> Icon(
+                                    Icons.Default.AccountCircle,
+                                    contentDescription = "Account"
+                                )
+                            }
+                        },
+                        label = {
+                            Text(text = screen.title)
+                        })
+                }
+            }
         }
     ) {}
 }
+
 sealed class NavigationsScreen(val title: String) {
     object HomePage : NavigationsScreen("Home")
     object SearchPage : NavigationsScreen("Detail")
