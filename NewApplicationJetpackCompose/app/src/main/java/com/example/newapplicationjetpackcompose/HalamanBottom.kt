@@ -1,5 +1,6 @@
 package com.example.newapplicationjetpackcompose
 
+import android.annotation.SuppressLint
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
@@ -14,6 +15,7 @@ import com.example.newapplicationjetpackcompose.page.HomePage
 import com.example.newapplicationjetpackcompose.page.SearchPage
 import com.example.newapplicationjetpackcompose.NavigationScreen
 
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HalamanBottom() {
