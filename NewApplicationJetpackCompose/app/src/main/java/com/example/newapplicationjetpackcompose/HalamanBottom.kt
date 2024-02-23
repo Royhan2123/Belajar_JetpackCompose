@@ -101,5 +101,5 @@ fun HalamanBottom() {
 @Preview(showSystemUi = true)
 @Composable
 fun PreviewBottomNavigation(){
-
+    HalamanBottom()
 }
