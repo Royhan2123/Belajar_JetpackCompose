@@ -1,6 +1,5 @@
 package com.example.newapplicationjetpackcompose.ui.page
 
-import android.text.Layout
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -190,20 +189,23 @@ fun SignInPage(navController: NavController) {
             Text(
                 text = "Forgot Password",
                 style = TextStyle(
-                    color = Color.Blue,
+                    color = LightBlue,
                     fontSize = 14.sp
                 )
             )
         }
-        Spacer(modifier = Modifier.height(20.dp))
+        Spacer(modifier = Modifier.height(10.dp))
         Button(
             onClick = { /*TODO NOTHING HERE*/ },
             modifier = Modifier
-                .width(200.dp)
+                .width(300.dp)
                 .height(45.dp)
                 .align(Alignment.CenterHorizontally),
             colors = ButtonDefaults.buttonColors(
                 LightBlue
+            ),
+            shape = RoundedCornerShape(
+                size = 10.dp
             )
         ) {
             Text(
@@ -213,6 +215,17 @@ fun SignInPage(navController: NavController) {
                 )
             )
         }
+        Spacer(modifier = Modifier.height(30.dp))
+        Text(
+            text = "-- or login with --",
+            style = TextStyle(
+                color = Color.Gray,
+                fontSize = 15.sp,
+            ),
+            modifier = Modifier.align(
+                Alignment.CenterHorizontally
+            )
+        )
     }
 }
 
