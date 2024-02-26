@@ -39,6 +39,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -185,11 +186,7 @@ fun SignInPage(navController: NavController) {
         )
         Spacer(modifier = Modifier.height(10.dp))
         TextButton(
-            onClick = {
-                navController.navigate(
-                    NavigationScreen.HomePage.name
-                )
-            },
+            onClick = {/*TODO NOTHING HERE*/ },
             modifier = Modifier.align(
                 Alignment.End
             )
@@ -204,7 +201,10 @@ fun SignInPage(navController: NavController) {
         }
         Spacer(modifier = Modifier.height(10.dp))
         Button(
-            onClick = { /*TODO NOTHING HERE*/ },
+            onClick = {
+                navController.navigate(
+                    NavigationScreen.HomePage.name)
+            },
             modifier = Modifier
                 .width(300.dp)
                 .height(45.dp)
@@ -225,7 +225,7 @@ fun SignInPage(navController: NavController) {
         }
         Spacer(modifier = Modifier.height(30.dp))
         Text(
-            text = "-- or login with --",
+            text = "--- or login with ---",
             style = TextStyle(
                 color = Color.Gray,
                 fontSize = 15.sp,
@@ -235,7 +235,7 @@ fun SignInPage(navController: NavController) {
             )
         )
         Spacer(modifier = Modifier.height(20.dp))
-        Row (
+        Row(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(100.dp),
@@ -244,11 +244,61 @@ fun SignInPage(navController: NavController) {
         ) {
             Image(
                 painter = painterResource(
-                id = R.drawable.google,
-            ),
+                    id = R.drawable.facebook,
+                ),
+                contentDescription = "image-facebook",
+                contentScale = ContentScale.Crop,
+                modifier = Modifier.size(50.dp)
+            )
+            Spacer(modifier = Modifier.width(10.dp))
+            Image(
+                painter = painterResource(
+                    id = R.drawable.google,
+                ),
                 contentDescription = "image-google",
                 contentScale = ContentScale.Crop,
-                modifier = Modifier.size(50.dp))
+                modifier = Modifier.size(50.dp)
+            )
+            Spacer(modifier = Modifier.width(10.dp))
+            Image(
+                painter = painterResource(
+                    id = R.drawable.twitter,
+                ),
+                contentDescription = "image-twitter",
+                contentScale = ContentScale.Crop,
+                modifier = Modifier.size(50.dp)
+            )
+            Spacer(modifier = Modifier.width(25.dp))
+        }
+        Spacer(modifier = Modifier.height(40.dp))
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(
+                text = "Don't have account?",
+                style = TextStyle(
+                    fontSize = 13.sp,
+                    color = Color.Gray,
+                    fontWeight = FontWeight.SemiBold
+                )
+            )
+            TextButton(
+                onClick = {
+                    navController.navigate(
+                        NavigationScreen.HomePage.name
+                    )
+                },
+            ) {
+                Text(
+                    text = "SignUp",
+                    style = TextStyle(
+                        color = LightBlue,
+                        fontSize = 13.sp
+                    )
+                )
+            }
         }
     }
 }
