@@ -1,25 +1,31 @@
 package com.example.newapplicationjetpackcompose.ui.page
 
+import android.text.Layout
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material.Icon
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
+import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -36,6 +42,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.example.newapplicationjetpackcompose.navigation.NavigationScreen
+import com.example.newapplicationjetpackcompose.ui.theme.LightBlue
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -48,8 +56,8 @@ fun SignInPage(navController: NavController) {
     }
     val keyboardController = LocalSoftwareKeyboardController.current
 
-    var obsucureText by rememberSaveable {
-        mutableStateOf(false)
+    var obsucureText by remember {
+        mutableStateOf(true)
     }
     Column(
         modifier = Modifier
@@ -154,12 +162,12 @@ fun SignInPage(navController: NavController) {
                     obsucureText = !obsucureText
                 }) {
                     val visibilityIcon = if (obsucureText)
-                        Icons.Filled.Visibility
-                    else Icons.Filled.VisibilityOff
+                        Icons.Filled.VisibilityOff
+                    else Icons.Filled.Visibility
 
                     val description = if (obsucureText)
-                        "Show Password"
-                    else "Hide Password"
+                        "Hide Password"
+                    else "Show Password"
 
                     Icon(
                         imageVector = visibilityIcon,
@@ -168,6 +176,43 @@ fun SignInPage(navController: NavController) {
                 }
             }
         )
+        Spacer(modifier = Modifier.height(10.dp))
+        TextButton(
+            onClick = {
+                navController.navigate(
+                    NavigationScreen.HomePage.name
+                )
+            },
+            modifier = Modifier.align(
+                Alignment.End
+            )
+        ) {
+            Text(
+                text = "Forgot Password",
+                style = TextStyle(
+                    color = Color.Blue,
+                    fontSize = 14.sp
+                )
+            )
+        }
+        Spacer(modifier = Modifier.height(20.dp))
+        Button(
+            onClick = { /*TODO NOTHING HERE*/ },
+            modifier = Modifier
+                .width(200.dp)
+                .height(45.dp)
+                .align(Alignment.CenterHorizontally),
+            colors = ButtonDefaults.buttonColors(
+                LightBlue
+            )
+        ) {
+            Text(
+                text = "Login", style = TextStyle(
+                    color = Color.White,
+                    fontSize = 15.sp
+                )
+            )
+        }
     }
 }
 
