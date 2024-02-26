@@ -1,4 +1,4 @@
-package com.example.newapplicationjetpackcompose.page
+package com.example.newapplicationjetpackcompose.ui.page
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -15,7 +15,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 
 @Composable
-fun HomePage(navController: NavController){
+fun AccountPage(navController: NavController){
     Column (
         modifier = Modifier
             .fillMaxSize()
@@ -23,13 +23,13 @@ fun HomePage(navController: NavController){
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-            Text(text = "HomePage",
-                color = Color.Black)
+        Text(text = "AccountPage",
+            color = Color.Black)
     }
 }
 
 @Preview(showSystemUi = true)
 @Composable
-fun PreviewHomePage(){
-    HomePage(navController = rememberNavController())
+fun PreviewAccountPage(){
+    AccountPage(navController = rememberNavController())
 }

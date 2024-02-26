@@ -1,4 +1,4 @@
-package com.example.newapplicationjetpackcompose
+package com.example.newapplicationjetpackcompose.ui
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity

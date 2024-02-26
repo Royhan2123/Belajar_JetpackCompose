@@ -5,9 +5,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.newapplicationjetpackcompose.SplashScreen
-import com.example.newapplicationjetpackcompose.page.AccountPage
-import com.example.newapplicationjetpackcompose.page.HomePage
-import com.example.newapplicationjetpackcompose.page.SearchPage
+import com.example.newapplicationjetpackcompose.ui.page.AccountPage
+import com.example.newapplicationjetpackcompose.ui.page.HomePage
+import com.example.newapplicationjetpackcompose.ui.page.SearchPage
 
 @Composable
 fun Navigation() {

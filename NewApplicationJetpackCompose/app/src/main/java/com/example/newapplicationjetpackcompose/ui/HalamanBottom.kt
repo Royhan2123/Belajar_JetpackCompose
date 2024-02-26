@@ -1,4 +1,4 @@
-package com.example.newapplicationjetpackcompose
+package com.example.newapplicationjetpackcompose.ui
 
 import android.annotation.SuppressLint
 import androidx.compose.material.BottomNavigation
@@ -20,9 +20,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.example.newapplicationjetpackcompose.page.AccountPage
-import com.example.newapplicationjetpackcompose.page.HomePage
-import com.example.newapplicationjetpackcompose.page.SearchPage
+import com.example.newapplicationjetpackcompose.ui.page.AccountPage
+import com.example.newapplicationjetpackcompose.ui.page.HomePage
+import com.example.newapplicationjetpackcompose.ui.page.SearchPage
 import com.example.newapplicationjetpackcompose.ui.theme.Cyan
 
 
