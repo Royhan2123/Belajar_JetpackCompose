@@ -231,7 +231,8 @@ fun SignUpPage(navController: NavController) {
         Button(
             onClick = {
                 navController.navigate(
-                    NavigationScreen.HomePage.name)
+                    NavigationScreen.HomePage.name
+                )
             },
             modifier = Modifier
                 .width(300.dp)
@@ -333,6 +334,6 @@ fun SignUpPage(navController: NavController) {
 
 @Preview(showSystemUi = true)
 @Composable
-fun PreviewSignUpPage(){
+fun PreviewSignUpPage() {
     SignUpPage(navController = rememberNavController())
 }
