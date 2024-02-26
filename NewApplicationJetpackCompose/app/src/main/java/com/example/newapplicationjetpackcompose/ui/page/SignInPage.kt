@@ -81,7 +81,7 @@ fun SignInPage(navController: NavController) {
                 fontSize = 18.sp
             )
         )
-        Spacer(modifier = Modifier.height(75.dp))
+        Spacer(modifier = Modifier.height(50.dp))
         Text(
             text = "Gmail",
             fontSize = 15.sp,
@@ -287,7 +287,7 @@ fun SignInPage(navController: NavController) {
             TextButton(
                 onClick = {
                     navController.navigate(
-                        NavigationScreen.HomePage.name
+                        NavigationScreen.SignUpPage.name
                     )
                 },
             ) {
