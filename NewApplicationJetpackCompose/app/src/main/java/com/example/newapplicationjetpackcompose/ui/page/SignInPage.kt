@@ -202,7 +202,8 @@ fun SignInPage(navController: NavController) {
         Button(
             onClick = {
                 navController.navigate(
-                    NavigationScreen.HomePage.name)
+                    NavigationScreen.HomePage.name
+                )
             },
             modifier = Modifier
                 .width(300.dp)
