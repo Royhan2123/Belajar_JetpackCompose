@@ -21,7 +21,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.newapplicationjetpackcompose.ui.page.AccountPage
-import com.example.newapplicationjetpackcompose.ui.page.HomePage
+import com.example.newapplicationjetpackcompose.ui.page.Homepages.HomePage
 import com.example.newapplicationjetpackcompose.ui.page.SearchPage
 import com.example.newapplicationjetpackcompose.ui.theme.Cyan
 

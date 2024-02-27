@@ -1,5 +1,4 @@
-package com.example.newapplicationjetpackcompose.ui.page
-
+package com.example.newapplicationjetpackcompose.ui.page.Homepages
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
@@ -40,7 +39,7 @@ import com.example.newapplicationjetpackcompose.ui.theme.LightBlue
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun HomePage(navController: NavController) {
+fun LatihanLazyColumn(navController: NavController) {
 
     Scaffold(
         topBar = {
@@ -76,7 +75,7 @@ fun HomePage(navController: NavController) {
 fun ListCard(affirmation: List<Affirmation>) {
     LazyColumn {
         items(affirmation) { affirmations ->
-            CardHomePage(affirmation = affirmations)
+            CardLazyPage(affirmation = affirmations)
         }
     }
 }
@@ -91,7 +90,7 @@ fun PreviewListCard() {
 }
 
 @Composable
-fun CardHomePage(affirmation: Affirmation) {
+fun CardLazyPage(affirmation: Affirmation) {
     Card(
         elevation = 8.dp,
         shape = RoundedCornerShape(
@@ -126,8 +125,8 @@ fun CardHomePage(affirmation: Affirmation) {
 
 @Preview
 @Composable
-fun CardHomePagePreview() {
-    CardHomePage(
+fun CardListPagePreview() {
+    CardLazyPage(
         Affirmation(
             R.string.affirmation1,
             R.drawable.image1
@@ -140,5 +139,5 @@ fun CardHomePagePreview() {
 )
 @Composable
 fun PreviewHomePage() {
-    HomePage(navController = rememberNavController())
+    LatihanLazyColumn(navController = rememberNavController())
 }
