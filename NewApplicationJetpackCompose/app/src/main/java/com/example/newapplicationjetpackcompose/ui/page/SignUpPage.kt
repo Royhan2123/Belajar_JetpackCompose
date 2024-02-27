@@ -66,13 +66,14 @@ fun SignUpPage(navController: NavController) {
     }
     val keyboardController = LocalSoftwareKeyboardController.current
 
-    var obsucureText by remember {
+    var obscureText by remember {
         mutableStateOf(true)
     }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(20.dp),
+            .padding(20.dp)
     ) {
         Text(
             text = "Register Your Account",
@@ -84,12 +85,6 @@ fun SignUpPage(navController: NavController) {
             )
         )
         Spacer(modifier = Modifier.height(50.dp))
-        Text(
-            text = "Name",
-            fontSize = 15.sp,
-            color = Color.Black,
-        )
-        Spacer(modifier = Modifier.height(10.dp))
         OutlinedTextField(
             value = txtName,
             onValueChange = { txtName = it },
@@ -98,14 +93,17 @@ fun SignUpPage(navController: NavController) {
                 .height(55.dp),
             placeholder = {
                 Text(
-                    text = "enter your name",
+                    text = "Enter your name",
                     style = TextStyle(
                         color = Color.Gray,
                         fontSize = 15.sp
                     ),
                 )
             },
-            maxLines = 1,
+            textStyle = TextStyle(
+                fontSize = 14.sp,
+                color = Color.Black,
+            ),
             singleLine = true,
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Email,
@@ -116,21 +114,9 @@ fun SignUpPage(navController: NavController) {
                     keyboardController?.hide()
                 }
             ),
-            textStyle = TextStyle(
-                fontSize = 14.sp,
-                color = Color.Black,
-            ),
-            shape = RoundedCornerShape(
-                10.dp
-            )
+            shape = RoundedCornerShape(10.dp)
         )
         Spacer(modifier = Modifier.height(25.dp))
-        Text(
-            text = "Gmail",
-            fontSize = 15.sp,
-            color = Color.Black,
-        )
-        Spacer(modifier = Modifier.height(10.dp))
         OutlinedTextField(
             value = txtGmail,
             onValueChange = { txtGmail = it },
@@ -146,7 +132,10 @@ fun SignUpPage(navController: NavController) {
                     ),
                 )
             },
-            maxLines = 1,
+            textStyle = TextStyle(
+                fontSize = 14.sp,
+                color = Color.Black,
+            ),
             singleLine = true,
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Email,
@@ -157,21 +146,9 @@ fun SignUpPage(navController: NavController) {
                     keyboardController?.hide()
                 }
             ),
-            textStyle = TextStyle(
-                fontSize = 14.sp,
-                color = Color.Black,
-            ),
-            shape = RoundedCornerShape(
-                10.dp
-            )
+            shape = RoundedCornerShape(10.dp)
         )
         Spacer(modifier = Modifier.height(25.dp))
-        Text(
-            text = "Password",
-            fontSize = 15.sp,
-            color = Color.Black,
-        )
-        Spacer(modifier = Modifier.height(10.dp))
         OutlinedTextField(
             value = txtPassword,
             onValueChange = { txtPassword = it },
@@ -180,14 +157,17 @@ fun SignUpPage(navController: NavController) {
                 .height(55.dp),
             placeholder = {
                 Text(
-                    text = "enter password",
+                    text = "Enter password",
                     style = TextStyle(
                         color = Color.Gray,
                         fontSize = 15.sp
                     ),
                 )
             },
-            maxLines = 1,
+            textStyle = TextStyle(
+                fontSize = 14.sp,
+                color = Color.Black,
+            ),
             singleLine = true,
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Password,
@@ -198,25 +178,19 @@ fun SignUpPage(navController: NavController) {
                     keyboardController?.hide()
                 }
             ),
-            textStyle = TextStyle(
-                fontSize = 14.sp,
-                color = Color.Black,
-            ),
-            shape = RoundedCornerShape(
-                10.dp
-            ),
-            visualTransformation = if (obsucureText)
+            shape = RoundedCornerShape(10.dp),
+            visualTransformation = if (obscureText)
                 PasswordVisualTransformation()
             else VisualTransformation.None,
             trailingIcon = {
                 IconButton(onClick = {
-                    obsucureText = !obsucureText
+                    obscureText = !obscureText
                 }) {
-                    val visibilityIcon = if (obsucureText)
+                    val visibilityIcon = if (obscureText)
                         Icons.Filled.VisibilityOff
                     else Icons.Filled.Visibility
 
-                    val description = if (obsucureText)
+                    val description = if (obscureText)
                         "Hide Password"
                     else "Show Password"
 
@@ -227,7 +201,7 @@ fun SignUpPage(navController: NavController) {
                 }
             }
         )
-        Spacer(modifier = Modifier.height(30.dp))
+        Spacer(modifier = Modifier.weight(1f))
         Button(
             onClick = {
                 navController.navigate(
@@ -235,18 +209,16 @@ fun SignUpPage(navController: NavController) {
                 )
             },
             modifier = Modifier
-                .width(300.dp)
-                .height(45.dp)
-                .align(Alignment.CenterHorizontally),
+                .fillMaxWidth()
+                .height(45.dp),
             colors = ButtonDefaults.buttonColors(
                 LightBlue
             ),
-            shape = RoundedCornerShape(
-                size = 10.dp
-            )
+            shape = RoundedCornerShape(10.dp)
         ) {
             Text(
-                text = "Register", style = TextStyle(
+                text = "Register",
+                style = TextStyle(
                     color = Color.White,
                     fontSize = 15.sp
                 )
@@ -259,9 +231,7 @@ fun SignUpPage(navController: NavController) {
                 color = Color.Gray,
                 fontSize = 15.sp,
             ),
-            modifier = Modifier.align(
-                Alignment.CenterHorizontally
-            )
+            modifier = Modifier.align(Alignment.CenterHorizontally)
         )
         Spacer(modifier = Modifier.height(20.dp))
         Row(
@@ -271,33 +241,27 @@ fun SignUpPage(navController: NavController) {
             horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.CenterVertically
         ) {
+            // Adjust image sizes and spacing as needed
             Image(
-                painter = painterResource(
-                    id = R.drawable.facebook,
-                ),
-                contentDescription = "image-facebook",
+                painter = painterResource(id = R.drawable.facebook),
+                contentDescription = "Facebook",
                 contentScale = ContentScale.Crop,
                 modifier = Modifier.size(50.dp)
             )
             Spacer(modifier = Modifier.width(10.dp))
             Image(
-                painter = painterResource(
-                    id = R.drawable.google,
-                ),
-                contentDescription = "image-google",
+                painter = painterResource(id = R.drawable.google),
+                contentDescription = "Google",
                 contentScale = ContentScale.Crop,
                 modifier = Modifier.size(50.dp)
             )
             Spacer(modifier = Modifier.width(10.dp))
             Image(
-                painter = painterResource(
-                    id = R.drawable.twitter,
-                ),
-                contentDescription = "image-twitter",
+                painter = painterResource(id = R.drawable.twitter),
+                contentDescription = "Twitter",
                 contentScale = ContentScale.Crop,
                 modifier = Modifier.size(50.dp)
             )
-            Spacer(modifier = Modifier.width(25.dp))
         }
         Spacer(modifier = Modifier.height(40.dp))
         Row(
@@ -306,7 +270,7 @@ fun SignUpPage(navController: NavController) {
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                text = "Already have accoun't?",
+                text = "Already have an account?",
                 style = TextStyle(
                     fontSize = 13.sp,
                     color = Color.Gray,
@@ -321,7 +285,7 @@ fun SignUpPage(navController: NavController) {
                 },
             ) {
                 Text(
-                    text = "SignIn",
+                    text = "Sign In",
                     style = TextStyle(
                         color = LightBlue,
                         fontSize = 13.sp
