@@ -75,7 +75,7 @@ fun SignInPage(navController: NavController) {
             text = "Login Your Account",
             modifier = Modifier
                 .align(Alignment.CenterHorizontally)
-                .padding(top = 50.dp),
+                .padding(top = 30.dp),
             style = TextStyle(
                 fontSize = 18.sp
             )
@@ -270,7 +270,7 @@ fun SignInPage(navController: NavController) {
             )
             Spacer(modifier = Modifier.width(25.dp))
         }
-        Spacer(modifier = Modifier.height(40.dp))
+        Spacer(modifier = Modifier.height(30.dp))
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.Center,
