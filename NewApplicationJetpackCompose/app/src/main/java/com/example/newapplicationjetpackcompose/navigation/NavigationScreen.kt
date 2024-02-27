@@ -19,5 +19,4 @@ enum class NavigationScreen {
             null -> SplashScreen
             else -> throw IllegalArgumentException("Route $route is not a recognized")
         }
-
 }
