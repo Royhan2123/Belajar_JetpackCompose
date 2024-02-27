@@ -79,9 +79,9 @@ fun HomePage(navController: NavController) {
         Spacer(modifier = Modifier.height(20.dp))
         ElevatedButton(
             onClick = {
-                navController.navigate(
-                    NavigationScreen.LatihanLazyColumn.name
-                )
+                /**
+                 * TODO THIS BUTTON NOT HAVE FUNCTION
+                 */
             },
             modifier = Modifier
                 .width(250.dp)
