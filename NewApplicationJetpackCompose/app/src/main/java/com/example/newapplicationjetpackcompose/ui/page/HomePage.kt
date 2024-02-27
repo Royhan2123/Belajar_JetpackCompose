@@ -81,7 +81,10 @@ fun ListCard(affirmation: List<Affirmation>) {
     }
 }
 
-@Preview(showSystemUi = true, apiLevel = 33)
+@Preview(
+    showSystemUi = true,
+    apiLevel = 33,
+)
 @Composable
 fun PreviewListCard() {
     ListCard(affirmation = DataSource().loadAffirmations())
@@ -132,7 +135,9 @@ fun CardHomePagePreview() {
     )
 }
 
-@Preview(showSystemUi = true)
+@Preview(
+    showSystemUi = true,
+)
 @Composable
 fun PreviewHomePage() {
     HomePage(navController = rememberNavController())
