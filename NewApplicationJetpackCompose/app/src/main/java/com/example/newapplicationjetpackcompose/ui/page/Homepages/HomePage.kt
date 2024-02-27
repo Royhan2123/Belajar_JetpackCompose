@@ -5,6 +5,7 @@ import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -67,7 +68,29 @@ fun HomePage(navController: NavController) {
             )
         ) {
             Text(
-                text = "Go to Latihan Lazy Column",
+                text = "Go to Exercise Lazy Column",
+                style = TextStyle(
+                    color = Color.White,
+                    fontSize = 15.sp
+                )
+            )
+        }
+        Spacer(modifier = Modifier.height(20.dp))
+        ElevatedButton(
+            onClick = {
+                navController.navigate(
+                    NavigationScreen.LatihanLazyColumn.name
+                )
+            },
+            modifier = Modifier
+                .width(250.dp)
+                .height(60.dp),
+            colors = ButtonDefaults.buttonColors(
+                LightBlue
+            )
+        ) {
+            Text(
+                text = "Go to Exercise Simple Animation",
                 style = TextStyle(
                     color = Color.White,
                     fontSize = 15.sp
