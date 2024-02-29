@@ -3,7 +3,6 @@ package com.example.newapplicationjetpackcompose.ui.page.Homepages
 import android.annotation.SuppressLint
 import android.app.Activity
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -38,7 +37,6 @@ import androidx.compose.ui.unit.dp
 import com.example.newapplicationjetpackcompose.R
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextFieldDefaults
@@ -56,11 +54,13 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.newapplicationjetpackcompose.ui.theme.LightBlue
+import com.example.newapplicationjetpackcompose.viewModel.GameViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun GameScreen(navController: NavController) {
+    val gameViewModel = GameViewModel()
     val mediumPadding = dimensionResource(id = R.dimen.padding_medium)
 
     Scaffold(
