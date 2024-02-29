@@ -183,7 +183,6 @@ fun SignInPage(navController: NavController) {
                 }
             }
         )
-        Spacer(modifier = Modifier.height(10.dp))
         TextButton(
             onClick = {/*TODO NOTHING HERE*/ },
             modifier = Modifier.align(
@@ -198,7 +197,6 @@ fun SignInPage(navController: NavController) {
                 )
             )
         }
-        Spacer(modifier = Modifier.height(10.dp))
         Button(
             onClick = {
                 navController.navigate(
@@ -268,9 +266,9 @@ fun SignInPage(navController: NavController) {
                 contentScale = ContentScale.Crop,
                 modifier = Modifier.size(50.dp)
             )
-            Spacer(modifier = Modifier.width(25.dp))
+
         }
-        Spacer(modifier = Modifier.height(30.dp))
+        Spacer(modifier = Modifier.height(20.dp))
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.Center,

@@ -227,7 +227,7 @@ fun SignUpPage(navController: NavController) {
                 }
             }
         )
-        Spacer(modifier = Modifier.height(30.dp))
+        Spacer(modifier = Modifier.height(20.dp))
         Button(
             onClick = {
                 navController.navigate(
@@ -263,7 +263,7 @@ fun SignUpPage(navController: NavController) {
                 Alignment.CenterHorizontally
             )
         )
-        Spacer(modifier = Modifier.height(20.dp))
+        Spacer(modifier = Modifier.height(10.dp))
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -298,14 +298,14 @@ fun SignUpPage(navController: NavController) {
                 modifier = Modifier.size(50.dp)
             )
         }
-        Spacer(modifier = Modifier.height(30.dp))
+        Spacer(modifier = Modifier.height(20.dp))
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                text = "Already have accoun't?",
+                text = "Already have account?",
                 style = TextStyle(
                     fontSize = 13.sp,
                     color = Color.Gray,
