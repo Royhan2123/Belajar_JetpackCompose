@@ -5,6 +5,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.newapplicationjetpackcompose.SplashScreen
+import com.example.newapplicationjetpackcompose.ui.HalamanBottom
 import com.example.newapplicationjetpackcompose.ui.page.AccountPage
 import com.example.newapplicationjetpackcompose.ui.page.Homepages.GameScreen
 import com.example.newapplicationjetpackcompose.ui.page.Homepages.HomePage
@@ -42,6 +43,9 @@ fun Navigation() {
         }
         composable(NavigationScreen.GameScreen.name){
             GameScreen(navController)
+        }
+        composable(NavigationScreen.HalamanBottom.name){
+            HalamanBottom()
         }
     }
 }

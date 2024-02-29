@@ -200,7 +200,7 @@ fun SignInPage(navController: NavController) {
         Button(
             onClick = {
                 navController.navigate(
-                    NavigationScreen.HomePage.name
+                    NavigationScreen.HalamanBottom.name
                 )
             },
             modifier = Modifier

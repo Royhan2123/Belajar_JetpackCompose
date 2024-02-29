@@ -8,6 +8,7 @@ enum class NavigationScreen {
     SignInPage,
     SignUpPage,
     LatihanLazyColumn,
+    HalamanBottom,
     GameScreen;
 
     fun fromRoute(route:String?): NavigationScreen =
@@ -20,6 +21,7 @@ enum class NavigationScreen {
             SignUpPage.name -> SignUpPage
             LatihanLazyColumn.name -> LatihanLazyColumn
             GameScreen.name -> GameScreen
+            HalamanBottom.name -> HalamanBottom
             null -> SplashScreen
             else -> throw IllegalArgumentException("Route $route is not a recognized")
         }

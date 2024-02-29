@@ -3,6 +3,7 @@ package com.example.newapplicationjetpackcompose.ui.page.Homepages
 import android.annotation.SuppressLint
 import android.app.Activity
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
