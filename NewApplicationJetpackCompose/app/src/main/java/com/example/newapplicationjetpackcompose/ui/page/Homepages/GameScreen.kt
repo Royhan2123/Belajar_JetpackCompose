@@ -1,5 +1,6 @@
 package com.example.newapplicationjetpackcompose.ui.page.Homepages
 
+import android.app.Activity
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -14,6 +15,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material.Text
@@ -34,7 +36,10 @@ import androidx.compose.ui.unit.dp
 import com.example.newapplicationjetpackcompose.R
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextFieldDefaults
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.sp
@@ -95,6 +100,42 @@ fun GameStatus(score: Int, modifier: Modifier = Modifier) {
     }
 }
 
+@Composable
+private fun FinalScoreDialog(
+    score: Int,
+    onPlayAgain: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    val activity = (LocalContext.current as Activity)
+    AlertDialog(
+        onDismissRequest = { /*TODO*/ },
+        confirmButton = {
+            TextButton(
+                onClick = {
+                    onPlayAgain()
+                }) {
+                Text(text = stringResource(id = R.string.play_again))
+            }
+        },
+        modifier = modifier,
+        text = {
+            Text(text = stringResource(id = R.string.you_scored, score))
+        },
+        title = {
+            Text(text = stringResource(id = R.string.congratulations))
+        },
+        dismissButton = {
+            TextButton(
+                onClick = {
+                    activity.finish()
+                }) {
+                Text(text = stringResource(id = R.string.exit))
+            }
+        }
+    )
+}
+
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun GameLayout(modifier: Modifier = Modifier) {
@@ -103,6 +144,9 @@ fun GameLayout(modifier: Modifier = Modifier) {
     Card(
         elevation = CardDefaults.cardElevation(
             defaultElevation = 5.dp
+        ),
+        colors = CardDefaults.cardColors(
+            colorScheme.surfaceTint
         )
     ) {
         Column(
@@ -122,13 +166,16 @@ fun GameLayout(modifier: Modifier = Modifier) {
             )
 
             Text(
-                text = "Scrambleum", style = typography.displayMedium
+                text = "Scrambleum",
+                style = typography.displayMedium,
+                color = Color.White
             )
 
             Text(
                 text = stringResource(id = R.string.instructions),
                 textAlign = TextAlign.Center,
                 style = typography.titleMedium,
+                color = Color.White
             )
 
             OutlinedTextField(
