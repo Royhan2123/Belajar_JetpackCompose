@@ -84,6 +84,7 @@ fun HomePage(navController: NavController) {
         ElevatedButton(
             onClick = {
                 navController.navigate(
+                    NavigationScreen.GameScreen.name
                 )
             },
             modifier = Modifier
