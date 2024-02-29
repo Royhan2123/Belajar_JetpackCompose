@@ -136,8 +136,6 @@ fun GameScreen(navController: NavController) {
     }
 }
 
-
-
 @Composable
 fun GameStatus(score: Int, modifier: Modifier = Modifier) {
     Card(
