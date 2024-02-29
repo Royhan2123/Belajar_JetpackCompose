@@ -43,9 +43,11 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 
 @Composable
-fun GameScreen() {
+fun GameScreen(navController: NavController) {
     val mediumPadding = dimensionResource(id = R.dimen.padding_medium)
 
     Column(
@@ -211,5 +213,5 @@ fun PreviewGameLayout() {
 @Preview(showSystemUi = true)
 @Composable
 fun PreviewGameScreen() {
-    GameScreen()
+    GameScreen(navController = rememberNavController())
 }

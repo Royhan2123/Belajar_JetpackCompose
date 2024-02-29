@@ -6,6 +6,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.newapplicationjetpackcompose.SplashScreen
 import com.example.newapplicationjetpackcompose.ui.page.AccountPage
+import com.example.newapplicationjetpackcompose.ui.page.Homepages.GameScreen
 import com.example.newapplicationjetpackcompose.ui.page.Homepages.HomePage
 import com.example.newapplicationjetpackcompose.ui.page.Homepages.LatihanLazyColumn
 import com.example.newapplicationjetpackcompose.ui.page.SearchPage
@@ -38,6 +39,9 @@ fun Navigation() {
         }
         composable(NavigationScreen.LatihanLazyColumn.name){
             LatihanLazyColumn(navController)
+        }
+        composable(NavigationScreen.GameScreen.name){
+            GameScreen(navController)
         }
     }
 }
