@@ -17,6 +17,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -36,8 +37,8 @@ sealed class NavigationsScreen(val title: String) {
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HalamanBottom() {
-    val navController = rememberNavController()
+fun HalamanBottom(navController : NavHostController) {
+
     val items = listOf(
         NavigationsScreen.HomePage,
         NavigationsScreen.SearchPage,
@@ -127,5 +128,5 @@ fun HalamanBottom() {
 @Preview(showSystemUi = true)
 @Composable
 fun PreviewBottomNavigation() {
-    HalamanBottom()
+    HalamanBottom(navController = rememberNavController())
 }

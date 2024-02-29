@@ -23,6 +23,9 @@ fun Navigation() {
         composable(NavigationScreen.SplashScreen.name){
             SplashScreen(navController)
         }
+        composable(NavigationScreen.HalamanBottom.name){
+            HalamanBottom(navController)
+        }
         composable(NavigationScreen.HomePage.name){
             HomePage(navController)
         }
@@ -43,9 +46,6 @@ fun Navigation() {
         }
         composable(NavigationScreen.GameScreen.name){
             GameScreen(navController)
-        }
-        composable(NavigationScreen.HalamanBottom.name){
-            HalamanBottom()
         }
     }
 }
