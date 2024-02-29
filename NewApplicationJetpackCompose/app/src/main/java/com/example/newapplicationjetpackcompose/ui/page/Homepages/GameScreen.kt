@@ -42,6 +42,7 @@ import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -56,12 +57,17 @@ import androidx.navigation.compose.rememberNavController
 import com.example.newapplicationjetpackcompose.ui.theme.LightBlue
 import com.example.newapplicationjetpackcompose.viewModel.GameViewModel
 
+
+
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun GameScreen(navController: NavController) {
     val gameViewModel = GameViewModel()
+    val gameUiState by gameViewModel.uiState.collectAsState()
+
     val mediumPadding = dimensionResource(id = R.dimen.padding_medium)
+
 
     Scaffold(
         topBar = {
@@ -93,7 +99,13 @@ fun GameScreen(navController: NavController) {
                 modifier = Modifier
                     .fillMaxWidth()
                     .wrapContentHeight()
-                    .padding(mediumPadding)
+                    .padding(mediumPadding),
+                currentScrambleWord = gameUiState.currentScrambleWord,
+                onKeyboardDone = { },
+                onUserGuessChanged = {
+                    gameViewModel.updateUserGuess(it)
+                },
+                userGuess = gameViewModel.userGuess
             )
             Column(
                 modifier = Modifier
@@ -123,6 +135,8 @@ fun GameScreen(navController: NavController) {
         }
     }
 }
+
+
 
 @Composable
 fun GameStatus(score: Int, modifier: Modifier = Modifier) {
@@ -175,7 +189,13 @@ private fun FinalScoreDialog(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun GameLayout(modifier: Modifier = Modifier) {
+fun GameLayout(
+    modifier: Modifier = Modifier,
+    currentScrambleWord: String,
+    onKeyboardDone: ()-> Unit,
+    onUserGuessChanged: (String) -> Unit,
+    userGuess : String
+) {
     val mediumPadding = dimensionResource(id = R.dimen.padding_medium)
 
     var txtGameField by remember {
@@ -206,7 +226,7 @@ fun GameLayout(modifier: Modifier = Modifier) {
             )
 
             Text(
-                text = "Scrambleum",
+                text = currentScrambleWord,
                 style = typography.displayMedium,
                 color = Color.White
             )
@@ -219,8 +239,8 @@ fun GameLayout(modifier: Modifier = Modifier) {
             )
 
             OutlinedTextField(
-                value = txtGameField,
-                onValueChange = { txtGameField = it },
+                value = userGuess,
+                onValueChange = onUserGuessChanged ,
                 singleLine = true,
                 shape = shapes.large,
                 modifier = Modifier.fillMaxWidth(),
@@ -231,11 +251,12 @@ fun GameLayout(modifier: Modifier = Modifier) {
                     Text(text = stringResource(id = R.string.enter_your_word))
                 },
                 isError = false,
-                keyboardOptions = KeyboardOptions(
-                    keyboardType = KeyboardType.Text, imeAction = ImeAction.Done
+                keyboardOptions = KeyboardOptions.Default.copy(
+                    keyboardType = KeyboardType.Text,
+                    imeAction = ImeAction.Done
                 ),
                 keyboardActions = KeyboardActions(
-                    onDone = { }
+                    onDone = { onKeyboardDone() }
                 )
             )
         }
@@ -245,7 +266,12 @@ fun GameLayout(modifier: Modifier = Modifier) {
 @Preview
 @Composable
 fun PreviewGameLayout() {
-    GameLayout()
+    GameLayout(
+        currentScrambleWord = "",
+        onKeyboardDone = {},
+        onUserGuessChanged = {},
+        userGuess = ""
+    )
 }
 
 @Preview(showSystemUi = true)

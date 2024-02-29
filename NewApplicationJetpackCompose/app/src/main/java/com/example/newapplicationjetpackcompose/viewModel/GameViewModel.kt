@@ -1,5 +1,8 @@
 package com.example.newapplicationjetpackcompose.viewModel
 
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import com.example.newapplicationjetpackcompose.data.GameUiState
 import com.example.newapplicationjetpackcompose.data.allWords
@@ -8,6 +11,13 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
 class GameViewModel : ViewModel() {
+
+    var userGuess by mutableStateOf("")
+        private set
+
+    fun updateUserGuess(guessWord:String) {
+        userGuess = guessWord
+    }
 
     private lateinit var currentWord:String
     private var usedWords: MutableSet<String> = mutableSetOf()
