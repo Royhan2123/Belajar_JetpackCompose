@@ -99,6 +99,7 @@ fun GameScreen(navController: NavController) {
                 userGuess = gameViewModel.userGuess,
                 onUserGuessChanged = { gameViewModel.updateUserGuess(it) },
                 onKeyboardDone = { gameViewModel.checkUserGuess() },
+                isGuessWrong = gameUiState.isGuessedWordWrong
             )
             Column(
                 modifier = Modifier
@@ -183,6 +184,7 @@ private fun FinalScoreDialog(
 fun GameLayout(
     modifier: Modifier = Modifier,
     currentScrambleWord: String,
+    isGuessWrong: Boolean,
     onKeyboardDone: () -> Unit,
     onUserGuessChanged: (String) -> Unit,
     userGuess: String
@@ -235,13 +237,17 @@ fun GameLayout(
                     containerColor = colorScheme.surface,
                 ),
                 label = {
-                    Text(
-                        text = stringResource(id = R.string.enter_your_word),
-                        style = typography.titleSmall,
-                        color = Color.Black
-                    )
+                    if (isGuessWrong) {
+                        Text(text = stringResource(id = R.string.wrong_guess))
+                    } else {
+                        Text(
+                            text = stringResource(id = R.string.enter_your_word),
+                            style = typography.titleSmall,
+                            color = Color.Black
+                        )
+                    }
                 },
-                isError = false,
+                isError = isGuessWrong,
                 keyboardOptions = KeyboardOptions.Default.copy(
                     keyboardType = KeyboardType.Text,
                     imeAction = ImeAction.Done
@@ -261,7 +267,8 @@ fun PreviewGameLayout() {
         currentScrambleWord = "",
         onKeyboardDone = {},
         onUserGuessChanged = {},
-        userGuess = ""
+        userGuess = "",
+        isGuessWrong = false
     )
 }
 
