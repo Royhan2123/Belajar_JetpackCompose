@@ -58,7 +58,6 @@ import com.example.newapplicationjetpackcompose.ui.theme.LightBlue
 import com.example.newapplicationjetpackcompose.viewModel.GameViewModel
 
 
-
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
@@ -96,16 +95,10 @@ fun GameScreen(navController: NavController) {
         ) {
             Spacer(modifier = Modifier.height(20.dp))
             GameLayout(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .wrapContentHeight()
-                    .padding(mediumPadding),
                 currentScrambleWord = gameUiState.currentScrambleWord,
+                userGuess = gameViewModel.userGuess,
+                onUserGuessChanged = { gameViewModel.updateUserGuess(it) },
                 onKeyboardDone = { },
-                onUserGuessChanged = {
-                    gameViewModel.updateUserGuess(it)
-                },
-                userGuess = gameViewModel.userGuess
             )
             Column(
                 modifier = Modifier
@@ -190,21 +183,17 @@ private fun FinalScoreDialog(
 fun GameLayout(
     modifier: Modifier = Modifier,
     currentScrambleWord: String,
-    onKeyboardDone: ()-> Unit,
+    onKeyboardDone: () -> Unit,
     onUserGuessChanged: (String) -> Unit,
-    userGuess : String
+    userGuess: String
 ) {
     val mediumPadding = dimensionResource(id = R.dimen.padding_medium)
-
-    var txtGameField by remember {
-        mutableStateOf("")
-    }
     Card(
         elevation = CardDefaults.cardElevation(
             defaultElevation = 5.dp
         ),
         colors = CardDefaults.cardColors(
-            colorScheme.surfaceTint
+            colorScheme.primaryContainer
         )
     ) {
         Column(
@@ -226,19 +215,19 @@ fun GameLayout(
             Text(
                 text = currentScrambleWord,
                 style = typography.displayMedium,
-                color = Color.White
+                color = Color.Black
             )
 
             Text(
                 text = stringResource(id = R.string.instructions),
                 textAlign = TextAlign.Center,
                 style = typography.titleMedium,
-                color = Color.White
+                color = Color.Black
             )
 
             OutlinedTextField(
                 value = userGuess,
-                onValueChange = onUserGuessChanged ,
+                onValueChange = onUserGuessChanged,
                 singleLine = true,
                 shape = shapes.large,
                 modifier = Modifier.fillMaxWidth(),
@@ -246,7 +235,11 @@ fun GameLayout(
                     containerColor = colorScheme.surface,
                 ),
                 label = {
-                    Text(text = stringResource(id = R.string.enter_your_word))
+                    Text(
+                        text = stringResource(id = R.string.enter_your_word),
+                        style = typography.titleSmall,
+                        color = Color.Black
+                    )
                 },
                 isError = false,
                 keyboardOptions = KeyboardOptions.Default.copy(

@@ -11,7 +11,6 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
 class GameViewModel : ViewModel() {
-
     var userGuess by mutableStateOf("")
         private set
 
@@ -52,8 +51,7 @@ class GameViewModel : ViewModel() {
         }
         return String(tempWord)
     }
-
-     fun resetGame() {
+     private fun resetGame() {
         usedWords.clear()
         _uiState.value = GameUiState(currentScrambleWord = pickRandomWordAndShuffle())
     }
