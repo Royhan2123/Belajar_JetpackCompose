@@ -109,7 +109,7 @@ fun GameScreen(navController: NavController) {
             ) {
                 Button(
                     modifier = Modifier.fillMaxWidth(),
-                    onClick = { }
+                    onClick = { gameViewModel.checkUserGuess() }
                 ) {
                     Text(
                         text = stringResource(R.string.submit),
