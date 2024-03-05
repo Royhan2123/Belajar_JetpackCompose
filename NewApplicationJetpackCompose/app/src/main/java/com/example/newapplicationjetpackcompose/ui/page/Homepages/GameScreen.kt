@@ -115,14 +115,20 @@ fun GameScreen(navController: NavController) {
                     )
                 }
                 OutlinedButton(
-                    onClick = { /*TODO*/ }, modifier = Modifier.fillMaxWidth()
+                    onClick = {
+                        gameViewModel.skipWord()
+                    },
+                    modifier = Modifier.fillMaxWidth()
                 ) {
                     Text(
                         text = stringResource(id = R.string.skip), fontSize = 16.sp
                     )
                 }
             }
-            GameStatus(score = 0, modifier = Modifier.padding(20.dp))
+            GameStatus(
+                score = gameUiState.score,
+                modifier = Modifier.padding(20.dp)
+            )
         }
     }
 }
@@ -185,7 +191,7 @@ fun GameLayout(
     onKeyboardDone: () -> Unit,
     onUserGuessChanged: (String) -> Unit,
     userGuess: String,
-    wordCount : Int,
+    wordCount: Int,
 ) {
     val mediumPadding = dimensionResource(id = R.dimen.padding_medium)
     Card(
