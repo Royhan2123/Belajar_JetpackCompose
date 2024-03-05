@@ -5,13 +5,13 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import com.example.newapplicationjetpackcompose.data.GameUiState
+import com.example.newapplicationjetpackcompose.data.SCORE_INCREASE
 import com.example.newapplicationjetpackcompose.data.allWords
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 
-@Suppress("ControlFlowWithEmptyBody")
 class GameViewModel : ViewModel() {
     var userGuess by mutableStateOf("")
         private set
@@ -60,11 +60,23 @@ class GameViewModel : ViewModel() {
 
     fun checkUserGuess() {
         if (userGuess.equals(currentWord, ignoreCase = true)) {
+            val updateScore = _uiState.value.score.plus(SCORE_INCREASE)
+            updateGameState(updateScore)
         } else {
             // User's guess is wrong, show an error
             _uiState.update { currentState ->
                 currentState.copy(isGuessedWordWrong = true)
             }
+        }
+    }
+
+    private fun updateGameState(updateSocre:Int) {
+        _uiState.update { currentState ->
+            currentState.copy(
+                isGuessedWordWrong = false,
+                currentScrambleWord = pickRandomWordAndShuffle(),
+                score =  updateSocre
+            )
         }
     }
 }
