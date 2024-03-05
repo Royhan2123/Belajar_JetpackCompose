@@ -99,7 +99,8 @@ fun GameScreen(navController: NavController) {
                 userGuess = gameViewModel.userGuess,
                 onUserGuessChanged = { gameViewModel.updateUserGuess(it) },
                 onKeyboardDone = { gameViewModel.checkUserGuess() },
-                isGuessWrong = gameUiState.isGuessedWordWrong
+                isGuessWrong = gameUiState.isGuessedWordWrong,
+                wordCount = gameUiState.currentWordCount
             )
             Column(
                 modifier = Modifier
@@ -187,7 +188,8 @@ fun GameLayout(
     isGuessWrong: Boolean,
     onKeyboardDone: () -> Unit,
     onUserGuessChanged: (String) -> Unit,
-    userGuess: String
+    userGuess: String,
+    wordCount : Int,
 ) {
     val mediumPadding = dimensionResource(id = R.dimen.padding_medium)
     Card(
@@ -209,7 +211,7 @@ fun GameLayout(
                     .background(colorScheme.surfaceTint)
                     .padding(horizontal = 10.dp, vertical = 4.dp)
                     .align(alignment = Alignment.End),
-                text = stringResource(id = R.string.word_count, 0),
+                text = stringResource(id = R.string.word_count, wordCount),
                 style = typography.titleMedium,
                 color = colorScheme.onPrimary
             )
@@ -268,7 +270,8 @@ fun PreviewGameLayout() {
         onKeyboardDone = {},
         onUserGuessChanged = {},
         userGuess = "",
-        isGuessWrong = false
+        isGuessWrong = false,
+        wordCount = 0
     )
 }
 

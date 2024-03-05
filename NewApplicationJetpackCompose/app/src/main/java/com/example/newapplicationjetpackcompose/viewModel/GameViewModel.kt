@@ -68,6 +68,7 @@ class GameViewModel : ViewModel() {
                 currentState.copy(isGuessedWordWrong = true)
             }
         }
+        updateUserGuess("")
     }
 
     private fun updateGameState(updateSocre:Int) {
@@ -75,7 +76,8 @@ class GameViewModel : ViewModel() {
             currentState.copy(
                 isGuessedWordWrong = false,
                 currentScrambleWord = pickRandomWordAndShuffle(),
-                score =  updateSocre
+                score =  updateSocre,
+                currentWordCount = currentState.currentWordCount.inc()
             )
         }
     }
