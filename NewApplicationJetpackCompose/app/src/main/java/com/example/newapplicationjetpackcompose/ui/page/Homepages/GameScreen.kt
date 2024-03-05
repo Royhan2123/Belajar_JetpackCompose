@@ -98,7 +98,7 @@ fun GameScreen(navController: NavController) {
                 currentScrambleWord = gameUiState.currentScrambleWord,
                 userGuess = gameViewModel.userGuess,
                 onUserGuessChanged = { gameViewModel.updateUserGuess(it) },
-                onKeyboardDone = { },
+                onKeyboardDone = { gameViewModel.checkUserGuess() },
             )
             Column(
                 modifier = Modifier
