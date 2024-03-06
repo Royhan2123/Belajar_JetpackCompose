@@ -1,7 +1,10 @@
 package com.example.android.test
 
 import com.example.android.dataTest.getUnscrambledWord
+import com.example.newapplicationjetpackcompose.data.SCORE_INCREASE
 import com.example.newapplicationjetpackcompose.viewModel.GameViewModel
+import junit.framework.TestCase.assertEquals
+import junit.framework.TestCase.assertFalse
 import org.junit.Test
 
 class GameViewModelTest  {
@@ -23,6 +26,11 @@ class GameViewModelTest  {
         viewModel.updateUserGuess(correctPlayerWord)
         viewModel.checkUserGuess()
 
-        currentGameUiState
+        assertFalse(currentGameUiState.isGuessedWordWrong)
+        assertEquals(20,currentGameUiState.score)
+    }
+
+    companion object {
+        private const val SCORE_AFTER_FIRST_CORRECT_ANSWER = SCORE_INCREASE
     }
 }
