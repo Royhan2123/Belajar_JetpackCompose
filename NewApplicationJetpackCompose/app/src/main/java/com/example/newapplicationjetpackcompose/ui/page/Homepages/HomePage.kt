@@ -83,7 +83,9 @@ fun HomePage(navController: NavController) {
         Spacer(modifier = Modifier.height(20.dp))
         ElevatedButton(
             onClick = {
-                NavigationScreen.NavigationCupcakes.name
+                navController.navigate(
+                    NavigationScreen.NavigationCupcakes.name
+                )
             },
             modifier = Modifier
                 .width(250.dp)
