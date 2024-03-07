@@ -10,6 +10,7 @@ import com.example.newapplicationjetpackcompose.ui.page.AccountPage
 import com.example.newapplicationjetpackcompose.ui.page.Homepages.GameScreen
 import com.example.newapplicationjetpackcompose.ui.page.Homepages.HomePage
 import com.example.newapplicationjetpackcompose.ui.page.Homepages.LatihanLazyColumn
+import com.example.newapplicationjetpackcompose.ui.page.Homepages.NavigationCupcakes
 import com.example.newapplicationjetpackcompose.ui.page.SearchPage
 import com.example.newapplicationjetpackcompose.ui.page.SignInPage
 import com.example.newapplicationjetpackcompose.ui.page.SignUpPage
@@ -46,6 +47,9 @@ fun Navigation() {
         }
         composable(NavigationScreen.GameScreen.name){
             GameScreen(navController)
+        }
+        composable(NavigationScreen.NavigationCupcakes.name) {
+            NavigationCupcakes(navController)
         }
     }
 }

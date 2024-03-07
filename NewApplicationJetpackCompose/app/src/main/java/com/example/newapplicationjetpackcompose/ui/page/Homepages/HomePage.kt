@@ -103,6 +103,26 @@ fun HomePage(navController: NavController) {
                 textAlign = TextAlign.Center
             )
         }
+        Spacer(modifier = Modifier.height(20.dp))
+        ElevatedButton(
+            onClick = {
+            },
+            modifier = Modifier
+                .width(250.dp)
+                .height(60.dp),
+            colors = ButtonDefaults.buttonColors(
+                LightBlue
+            )
+        ) {
+            Text(
+                text = "Go to Navigation Cupcake",
+                style = TextStyle(
+                    color = Color.White,
+                    fontSize = 15.sp
+                ),
+                textAlign = TextAlign.Center
+            )
+        }
     }
 }
 
