@@ -60,29 +60,6 @@ fun HomePage(navController: NavController) {
         Spacer(modifier = Modifier.height(20.dp))
         ElevatedButton(
             onClick = {
-                /**
-                 * TODO THIS BUTTON NOT HAVE FUNCTION
-                 */
-            },
-            modifier = Modifier
-                .width(250.dp)
-                .height(60.dp),
-            colors = ButtonDefaults.buttonColors(
-                LightBlue
-            )
-        ) {
-            Text(
-                text = "Go to Exercise Simple Animation",
-                style = TextStyle(
-                    color = Color.White,
-                    fontSize = 15.sp
-                ),
-                textAlign = TextAlign.Center
-            )
-        }
-        Spacer(modifier = Modifier.height(20.dp))
-        ElevatedButton(
-            onClick = {
                 navController.navigate(
                     NavigationScreen.GameScreen.name
                 )
@@ -106,6 +83,7 @@ fun HomePage(navController: NavController) {
         Spacer(modifier = Modifier.height(20.dp))
         ElevatedButton(
             onClick = {
+                NavigationScreen.NavigationCupcakes.name
             },
             modifier = Modifier
                 .width(250.dp)
@@ -126,9 +104,7 @@ fun HomePage(navController: NavController) {
     }
 }
 
-@Preview(
-    showSystemUi = true,
-)
+@Preview(showSystemUi = true)
 @Composable
 fun PreviewHomePages() {
     HomePage(navController = rememberNavController())

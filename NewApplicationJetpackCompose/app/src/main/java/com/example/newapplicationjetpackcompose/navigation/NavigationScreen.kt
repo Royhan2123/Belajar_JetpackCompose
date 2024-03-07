@@ -9,8 +9,8 @@ enum class NavigationScreen {
     SignUpPage,
     LatihanLazyColumn,
     HalamanBottom,
-    NavigationCupcakes,
-    GameScreen;
+    GameScreen,
+    NavigationCupcakes;
 
     fun fromRoute(route:String?): NavigationScreen =
         when(route?.substringBefore("/")){
