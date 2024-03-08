@@ -76,7 +76,7 @@ fun CupcakeAppBar(
 }
 
 @Composable
-fun CupcakeApp(
+fun NavigationCupcakes(
     viewModel: OrderViewModel = viewModel(),
     navController: NavHostController = rememberNavController()
 ) {
