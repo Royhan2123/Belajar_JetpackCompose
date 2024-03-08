@@ -72,10 +72,6 @@ fun StartOrderScreen(
     }
 }
 
-/**
- * Customizable button composable that displays the [labelResourceId]
- * and triggers [onClick] lambda when this composable is clicked
- */
 @Composable
 fun SelectQuantityButton(
     @StringRes labelResourceId: Int,
