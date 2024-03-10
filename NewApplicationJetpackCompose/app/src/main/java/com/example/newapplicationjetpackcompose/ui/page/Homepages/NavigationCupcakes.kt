@@ -80,7 +80,7 @@ fun NavigationCupcakes(
                     quantityOptions = DataSourceCupcakes.quantityOptions,
                     onNextButtonClicked = {
                         /*
-                        TODO THIS NOT OF FUCNTION
+                        TODO THIS NOT OF FUNCTION
                          */
                     },
                     modifier = Modifier
