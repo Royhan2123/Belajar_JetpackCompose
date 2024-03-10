@@ -101,6 +101,12 @@ fun NavigationCupcakes(
                     modifier = Modifier.fillMaxHeight()
                 )
             }
+            composable(route = CupcakeScreen.Summary.name) {
+                OrderSummaryScreen(
+                    orderUiState = uiState,
+                    onCancelButtonClicked = { /*TODO*/ },
+                )
+            }
         }
     }
 }
