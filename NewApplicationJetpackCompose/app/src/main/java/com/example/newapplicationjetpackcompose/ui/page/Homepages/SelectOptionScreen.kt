@@ -1,5 +1,6 @@
 package com.example.newapplicationjetpackcompose.ui.page.Homepages
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -31,7 +32,7 @@ fun SelectOptionScreen(
     options: List<String>,
     onSelectionChanged: (String) -> Unit = {},
     onCancelButtonClicked: () -> Unit = {},
-    onNextButtonClicked: () -> Unit = {},
+    @SuppressLint("ModifierParameter")
     modifier: Modifier = Modifier
 ) {
     var selectedValue by rememberSaveable { mutableStateOf("") }
@@ -93,7 +94,7 @@ fun SelectOptionScreen(
                 modifier = Modifier.weight(1f),
                 // the button is enabled when the user makes a selection
                 enabled = selectedValue.isNotEmpty(),
-                onClick = onNextButtonClicked
+                onClick = {  }
             ) {
                 Text(stringResource(R.string.next))
             }
