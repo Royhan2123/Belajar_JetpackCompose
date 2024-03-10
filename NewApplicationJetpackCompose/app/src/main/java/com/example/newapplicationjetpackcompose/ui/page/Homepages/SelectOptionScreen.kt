@@ -32,6 +32,7 @@ fun SelectOptionScreen(
     options: List<String>,
     onSelectionChanged: (String) -> Unit = {},
     onCancelButtonClicked: () -> Unit = {},
+    onNextButtonClicked: () -> Unit = {},
     @SuppressLint("ModifierParameter")
     modifier: Modifier = Modifier
 ) {
@@ -94,13 +95,12 @@ fun SelectOptionScreen(
                 modifier = Modifier.weight(1f),
                 // the button is enabled when the user makes a selection
                 enabled = selectedValue.isNotEmpty(),
-                onClick = {  }
+                onClick = onNextButtonClicked
             ) {
                 Text(stringResource(R.string.next))
             }
         }
     }
-
 }
 
 @Preview
