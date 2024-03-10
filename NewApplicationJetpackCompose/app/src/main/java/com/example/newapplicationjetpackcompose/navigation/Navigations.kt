@@ -49,7 +49,7 @@ fun Navigation() {
             GameScreen(navController)
         }
         composable(NavigationScreen.NavigationCupcakes.name) {
-            NavigationCupcakes(navController)
+            NavigationCupcakes()
         }
     }
 }
