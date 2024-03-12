@@ -21,7 +21,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.newapplicationjetpackcompose.R
 import com.example.newapplicationjetpackcompose.data.DataSourceCupcakes
-import com.example.newapplicationjetpackcompose.viewModel.OrderViewModel
+import com.example.newapplicationjetpackcompose.viewModel.com.example.newapplicationjetpackcompose.viewModel.OrderViewModel
 
 enum class CupcakeScreen() {
     Start,
