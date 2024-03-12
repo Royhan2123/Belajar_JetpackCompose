@@ -199,8 +199,8 @@ fun SignInPage(navController: NavController) {
         }
         Button(
             onClick = {
-                navController.navigate(
-                    NavigationScreen.HomePage.name
+                navController.popBackStack(
+                    NavigationScreen.HomePage.name, inclusive = false
                 )
             },
             modifier = Modifier

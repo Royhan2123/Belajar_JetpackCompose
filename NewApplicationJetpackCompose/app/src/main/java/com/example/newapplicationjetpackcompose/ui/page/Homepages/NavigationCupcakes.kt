@@ -30,36 +30,6 @@ enum class CupcakeScreen() {
     Summary
 }
 
-/**
- * Composable that displays the topBar and displays back button if back navigation is possible.
- */
-//@OptIn(ExperimentalMaterial3Api::class)
-//@Composable
-//fun CupcakeAppBar(
-//    currentScreen: CupcakeScreen,
-//    canNavigateBack: Boolean,
-//    navigateUp: () -> Unit,
-//    modifier: Modifier = Modifier
-//) {
-//    TopAppBar(
-//        title = { Text(stringResource(currentScreen.title)) },
-//        colors = TopAppBarDefaults.mediumTopAppBarColors(
-//            containerColor = MaterialTheme.colorScheme.primaryContainer
-//        ),
-//        modifier = modifier,
-//        navigationIcon = {
-//            if (canNavigateBack) {
-//                IconButton(onClick = navigateUp) {
-//                    Icon(
-//                        imageVector = Icons.Filled.ArrowBack,
-//                        contentDescription = stringResource(R.string.back_button)
-//                    )
-//                }
-//            }
-//        }
-//    )
-//}
-
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun NavigationCupcakes(
@@ -79,9 +49,8 @@ fun NavigationCupcakes(
                 StartOrderScreen(
                     quantityOptions = DataSourceCupcakes.quantityOptions,
                     onNextButtonClicked = {
-                        /*
-                        TODO THIS NOT OF FUNCTION
-                         */
+                        viewModel.setQuantity(it)
+                        navController.navigate(CupcakeScreen.Flavor.name)
                     },
                     modifier = Modifier
                         .fillMaxSize()
@@ -92,19 +61,21 @@ fun NavigationCupcakes(
                 val context = LocalContext.current
                 SelectOptionScreen(
                     subtotal = uiState.price,
-                    options = DataSourceCupcakes.flavors.map { id ->
-                        context.resources.getString(id)
-                    },
-                    onSelectionChanged = {
-                        viewModel.setFlavor(it)
-                    },
-                    modifier = Modifier.fillMaxHeight()
+                    onNextButtonClicked = { navController.navigate(CupcakeScreen.Summary.name) },
+                    options = uiState.pickupOptions,
+                    onSelectionChanged = { viewModel.setDate(it) },
+                    modifier = Modifier.fillMaxHeight(),
+                    onCancelButtonClicked = { }
                 )
             }
             composable(route = CupcakeScreen.Summary.name) {
                 OrderSummaryScreen(
                     orderUiState = uiState,
                     onCancelButtonClicked = { /*TODO*/ },
+                    onSendButtonClicked = { subject: String, summary: String ->
+
+                    },
+                    modifier = Modifier.fillMaxHeight()
                 )
             }
         }
