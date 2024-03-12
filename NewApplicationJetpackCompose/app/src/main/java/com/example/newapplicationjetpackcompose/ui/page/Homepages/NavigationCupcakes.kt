@@ -48,6 +48,7 @@ fun CupcakeAppBar(
     navigateUp: () -> Unit = { },
     @SuppressLint("ModifierParameter") modifier: Modifier = Modifier
 ) {
+
     TopAppBar(title = { Text(text = stringResource(currentScreen.title)) },
         modifier = modifier,
         navigationIcon = {
@@ -76,6 +77,7 @@ fun NavigationCupcakes(
     val currentScreen = CupcakeScreen.valueOf(
         backStackEntry?.destination?.route ?: CupcakeScreen.Start.name
     )
+
     Scaffold { innerPadding ->
         val uiState by viewModel.uiState.collectAsState()
 
