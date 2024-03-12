@@ -52,7 +52,6 @@ import com.example.newapplicationjetpackcompose.R
 import com.example.newapplicationjetpackcompose.navigation.NavigationScreen
 import com.example.newapplicationjetpackcompose.ui.theme.LightBlue
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SignInPage(navController: NavController) {
     var txtGmail by rememberSaveable {

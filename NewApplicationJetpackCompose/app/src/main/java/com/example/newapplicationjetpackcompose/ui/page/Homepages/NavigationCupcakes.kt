@@ -1,8 +1,6 @@
 package com.example.newapplicationjetpackcompose.ui.page.Homepages
 
 import android.annotation.SuppressLint
-import android.content.Context
-import android.content.Intent
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -61,17 +59,29 @@ fun NavigationCupcakes(
                 val context = LocalContext.current
                 SelectOptionScreen(
                     subtotal = uiState.price,
-                    onNextButtonClicked = { navController.navigate(CupcakeScreen.Summary.name) },
-                    options = uiState.pickupOptions,
-                    onSelectionChanged = { viewModel.setDate(it) },
+                    onNextButtonClicked = {
+                        navController.navigate(CupcakeScreen.Summary.name)
+                    },
+                    options = DataSourceCupcakes.flavors.map { id ->
+                        context.resources.getString(id)
+                    },
+                    onSelectionChanged = {
+                        viewModel.setDate(it)
+                    },
                     modifier = Modifier.fillMaxHeight(),
-                    onCancelButtonClicked = { }
+                    onCancelButtonClicked = {
+                        cancelOrderAndNavigateToStart(
+                            viewModel, navController
+                        )
+                    }
                 )
             }
             composable(route = CupcakeScreen.Summary.name) {
                 OrderSummaryScreen(
                     orderUiState = uiState,
-                    onCancelButtonClicked = { /*TODO*/ },
+                    onCancelButtonClicked = {
+                        cancelOrderAndNavigateToStart(viewModel, navController)
+                    },
                     onSendButtonClicked = { subject: String, summary: String ->
 
                     },
@@ -87,20 +97,8 @@ private fun cancelOrderAndNavigateToStart(
     navController: NavHostController
 ) {
     viewModel.resetOrder()
-    navController.popBackStack(CupcakeScreen.Start.name, inclusive = false)
-}
-
-private fun shareOrder(context: Context, subject: String, summary: String) {
-    val intent = Intent(Intent.ACTION_SEND).apply {
-        type = "text/plain"
-        putExtra(Intent.EXTRA_SUBJECT, subject)
-        putExtra(Intent.EXTRA_TEXT, summary)
-    }
-    context.startActivity(
-        Intent.createChooser(
-            intent,
-            context.getString(R.string.new_cupcake_order)
-        )
+    navController.popBackStack(
+        CupcakeScreen.Start.name, inclusive = false
     )
 }
 
