@@ -1,4 +1,4 @@
-package com.example.newapplicationjetpackcompose.viewModel
+package com.example.newapplicationjetpackcompose.viewModel.com.example.newapplicationjetpackcompose.viewModel
 
 import androidx.lifecycle.ViewModel
 import com.example.newapplicationjetpackcompose.data.OrderUiState
@@ -11,22 +11,15 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 
+
 private const val PRICE_PER_CUPCAKE = 2.00
 
-/** Additional cost for same day pickup of an order */
 private const val PRICE_FOR_SAME_DAY_PICKUP = 3.00
-
 class OrderViewModel : ViewModel() {
 
-    /**
-     * Cupcake state for this order
-     */
     private val _uiState = MutableStateFlow(OrderUiState(pickupOptions = pickupOptions()))
     val uiState: StateFlow<OrderUiState> = _uiState.asStateFlow()
 
-    /**
-     * Set the quantity [numberCupcakes] of cupcakes for this order's state and update the price
-     */
     fun setQuantity(numberCupcakes: Int) {
         _uiState.update { currentState ->
             currentState.copy(
@@ -36,10 +29,6 @@ class OrderViewModel : ViewModel() {
         }
     }
 
-    /**
-     * Set the [desiredFlavor] of cupcakes for this order's state.
-     * Only 1 flavor can be selected for the whole order.
-     */
     fun setFlavor(desiredFlavor: String) {
         _uiState.update { currentState ->
             currentState.copy(flavor = desiredFlavor)
@@ -81,6 +70,9 @@ class OrderViewModel : ViewModel() {
         return formattedPrice
     }
 
+    /**
+     * Returns a list of date options starting with the current date and the following 3 dates.
+     */
     private fun pickupOptions(): List<String> {
         val dateOptions = mutableListOf<String>()
         val formatter = SimpleDateFormat("E MMM d", Locale.getDefault())
