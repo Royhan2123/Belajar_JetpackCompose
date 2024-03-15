@@ -103,6 +103,25 @@ fun HomePage(navController: NavController) {
                 textAlign = TextAlign.Center
             )
         }
+        Spacer(modifier = Modifier.height(20.dp))
+        ElevatedButton(
+            onClick = { /*TODO*/ },
+            modifier = Modifier
+                .width(250.dp)
+                .height(60.dp),
+            colors = ButtonDefaults.buttonColors(
+                LightBlue
+            ),
+        ) {
+            Text(
+                text = "Get Api with Retrofit",
+                style = TextStyle(
+                    color = Color.White,
+                    fontSize = 15.sp
+                ),
+                textAlign = TextAlign.Center,
+            )
+        }
     }
 }
 
