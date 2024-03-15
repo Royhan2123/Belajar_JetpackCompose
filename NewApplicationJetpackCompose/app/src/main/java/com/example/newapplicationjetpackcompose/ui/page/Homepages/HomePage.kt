@@ -105,7 +105,11 @@ fun HomePage(navController: NavController) {
         }
         Spacer(modifier = Modifier.height(20.dp))
         ElevatedButton(
-            onClick = { /*TODO*/ },
+            onClick = {
+                navController.navigate(
+                    NavigationScreen.MarsPhotoApp.name
+                )
+            },
             modifier = Modifier
                 .width(250.dp)
                 .height(60.dp),

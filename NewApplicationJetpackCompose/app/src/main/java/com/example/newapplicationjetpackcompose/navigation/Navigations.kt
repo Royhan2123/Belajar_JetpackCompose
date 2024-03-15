@@ -10,6 +10,7 @@ import com.example.newapplicationjetpackcompose.ui.page.AccountPage
 import com.example.newapplicationjetpackcompose.ui.page.Homepages.GameScreen
 import com.example.newapplicationjetpackcompose.ui.page.Homepages.HomePage
 import com.example.newapplicationjetpackcompose.ui.page.Homepages.LatihanLazyColumn
+import com.example.newapplicationjetpackcompose.ui.page.Homepages.MarsPhotosApp
 import com.example.newapplicationjetpackcompose.ui.page.Homepages.NavigationCupcakes
 import com.example.newapplicationjetpackcompose.ui.page.SearchPage
 import com.example.newapplicationjetpackcompose.ui.page.SignInPage
@@ -50,6 +51,9 @@ fun Navigation() {
         }
         composable(NavigationScreen.NavigationCupcakes.name) {
             NavigationCupcakes()
+        }
+        composable(NavigationScreen.MarsPhotoApp.name) {
+            MarsPhotosApp()
         }
     }
 }
