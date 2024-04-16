@@ -4,7 +4,6 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.learngetapi.HomeScreen
 import com.example.learngetapi.ui.SplashScreen
 
 @Composable
@@ -17,10 +16,6 @@ fun Navigations() {
     ) {
         composable(NavigationScreen.SplashScreen.name) {
             SplashScreen(navController = navController)
-        }
-
-        composable(NavigationScreen.HomeScreen.name) {
-            HomeScreen(navController = navController)
         }
     }
 }

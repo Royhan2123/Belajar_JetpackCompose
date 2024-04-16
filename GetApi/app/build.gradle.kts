@@ -1,11 +1,13 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    kotlin("kapt")
 }
 
 android {
+
     namespace = "com.example.learngetapi"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.example.learngetapi"
@@ -39,6 +41,9 @@ android {
     buildFeatures {
         compose = true
     }
+    kapt {
+        correctErrorTypes = true
+    }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.4.3"
     }
@@ -66,8 +71,25 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
+
+    // navigation compose
     implementation("androidx.navigation:navigation-compose:2.7.7")
+
+    // lottie
     implementation("com.airbnb.android:lottie-compose:4.0.0")
+
+    // retrofit
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation ("com.squareup.okhttp3:okhttp:4.9.0")
     implementation ("com.squareup.retrofit2:converter-gson:2.5.0")
+    implementation ("com.squareup.okhttp3:okhttp:4.9.1")
+    implementation("io.coil-kt:coil-compose:1.4.0")
+
+    // dagger hilt
+    implementation("com.google.dagger:hilt-android:2.44")
+    kapt("com.google.dagger:hilt-android-compiler:2.44")
+
+    // viewModel
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0")
+
 }
