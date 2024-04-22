@@ -1,7 +1,9 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    kotlin("kapt")
+    id("com.google.dagger.hilt.android") version "2.44" apply false
+    id("com.google.devtools.ksp") version "1.9.22-1.0.16"
+    id("kotlin-parcelize")
 }
 
 android {
@@ -11,7 +13,8 @@ android {
 
     defaultConfig {
         applicationId = "com.example.learngetapi"
-        minSdk = 29
+        minSdk = 28
+        //noinspection OldTargetApi
         targetSdk = 33
         versionCode = 1
         versionName = "1.0"
@@ -32,20 +35,20 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
+//    kapt {
+//        correctErrorTypes = true
+//    }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
     buildFeatures {
         compose = true
     }
-    kapt {
-        correctErrorTypes = true
-    }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.3"
+        kotlinCompilerExtensionVersion = "1.5.1"
     }
     packaging {
         resources {
@@ -58,6 +61,7 @@ dependencies {
 
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
     implementation("androidx.activity:activity-compose:1.8.2")
     implementation(platform("androidx.compose:compose-bom:2023.03.00"))
     implementation("androidx.compose.ui:ui")
@@ -71,6 +75,8 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
+    implementation("androidx.compose.material:material:1.6.5")
+    implementation ("com.google.android.material:material:1.11.0")
 
     // navigation compose
     implementation("androidx.navigation:navigation-compose:2.7.7")
@@ -80,16 +86,59 @@ dependencies {
 
     // retrofit
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation ("com.squareup.okhttp3:okhttp:4.9.0")
-    implementation ("com.squareup.retrofit2:converter-gson:2.5.0")
+    implementation ("com.squareup.okhttp3:okhttp:4.9.1")
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation ("com.squareup.okhttp3:okhttp:4.9.1")
     implementation("io.coil-kt:coil-compose:1.4.0")
 
-    // dagger hilt
+    //dagger-hilt
+    // note that Hilt Viewmodel is now part of the main Hilt package,
+    // so trying to import it with its own line causes errors
     implementation("com.google.dagger:hilt-android:2.44")
-    kapt("com.google.dagger:hilt-android-compiler:2.44")
+    implementation("com.google.dagger:hilt-android-gradle-plugin:2.44")
+    ksp("com.google.dagger:hilt-compiler:2.44")
+    ksp("androidx.hilt:hilt-compiler:1.2.0") // 1.0.0 in course
+    implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
+    implementation ("androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03")
+    //hilt nav above was 1.0.0-alpha03 in vid
+
 
     // viewModel
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0")
+
+    // Coroutines
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.7.3")
+
+    // Coil
+    implementation("io.coil-kt:coil-compose:2.4.0")
+
+    // Room
+    implementation ("androidx.room:room-runtime:2.6.1")
+    annotationProcessor ("androidx.room:room-compiler:2.6.1")
+
+    // To use Kotlin annotation processing tool (kapt) MUST HAVE!
+    // ksp("androidx.room:room-compiler:2.6.1")
+    implementation ("androidx.room:room-ktx:2.6.1")
+
+    // JSON Converter
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+
+    // splash api
+    implementation ("androidx.core:core-splashscreen:1.0.1")
+
+    //Datastore
+    implementation ("androidx.datastore:datastore-preferences:1.1.0")
+
+    //Compose Foundation
+    implementation ("androidx.compose.foundation:foundation:1.6.6")
+
+    //Accompanist
+    implementation ("com.google.accompanist:accompanist-systemuicontroller:0.31.4-beta")
+
+    //Paging 3
+    implementation ("androidx.paging:paging-runtime-ktx:3.2.1")
+    implementation ("androidx.paging:paging-compose:3.3.0-beta01")
 
 }
