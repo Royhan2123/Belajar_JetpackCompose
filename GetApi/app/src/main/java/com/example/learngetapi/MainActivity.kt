@@ -8,6 +8,9 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.example.learngetapi.navigation.Navigations
+import com.example.learngetapi.presentation.onboarding.OnBoardingScreen
+import com.example.learngetapi.presentation.onboarding.components.OnBoardingPage
+import com.example.learngetapi.presentation.onboarding.pages
 import com.example.learngetapi.ui.theme.LearnGetApiTheme
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.HiltAndroidApp
@@ -18,7 +21,7 @@ class MainActivity : ComponentActivity() {
         installSplashScreen()
         setContent {
             LearnGetApiTheme {
-                Navigations()
+              OnBoardingScreen()
             }
         }
     }
