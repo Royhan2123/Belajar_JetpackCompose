@@ -88,6 +88,7 @@ fun OnBoardingScreen() {
                     }
                 }
             }
+            Spacer(modifier = Modifier.weight(1f))
         }
     }
 }

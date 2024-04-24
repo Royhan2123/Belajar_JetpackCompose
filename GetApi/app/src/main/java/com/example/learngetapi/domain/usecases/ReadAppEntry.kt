@@ -1,0 +1,12 @@
+package com.example.learngetapi.domain.usecases
+
+import com.example.learngetapi.domain.manger.LocalUserManger
+import kotlinx.coroutines.flow.Flow
+
+class ReadAppEntry(
+    private val localUserManger: LocalUserManger
+) {
+    suspend operator fun invoke() : Flow<Boolean>{
+        return localUserManger.readAppEntry()
+    }
+}

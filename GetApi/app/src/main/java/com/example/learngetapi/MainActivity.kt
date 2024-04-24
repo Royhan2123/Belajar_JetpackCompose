@@ -7,6 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.core.view.WindowCompat
 import com.example.learngetapi.navigation.Navigations
 import com.example.learngetapi.presentation.onboarding.OnBoardingScreen
 import com.example.learngetapi.presentation.onboarding.components.OnBoardingPage
@@ -18,6 +19,7 @@ import dagger.hilt.android.HiltAndroidApp
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        WindowCompat.setDecorFitsSystemWindows(window,false)
         installSplashScreen()
         setContent {
             LearnGetApiTheme {
