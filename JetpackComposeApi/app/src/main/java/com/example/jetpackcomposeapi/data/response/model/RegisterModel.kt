@@ -1,4 +1,4 @@
-package com.example.jetpackcomposeapi.data.response
+package com.example.jetpackcomposeapi.data.response.model
 
 data class RegisterModel(
     val name:String,
