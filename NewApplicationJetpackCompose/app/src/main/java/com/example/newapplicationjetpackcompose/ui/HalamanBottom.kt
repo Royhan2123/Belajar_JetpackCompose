@@ -84,7 +84,6 @@ fun HalamanBottom(navController : NavHostController) {
                                     Icons.Default.Home,
                                     contentDescription = "Home"
                                 )
-
                                 NavigationsScreen.SearchPage -> Icon(
                                     Icons.Default.Search,
                                     contentDescription = "Search"

@@ -1,11 +1,13 @@
 package com.example.learngetapi.navigation
 
 enum class NavigationScreen {
-    HomeScreen;
+    SignInScreen,
+    SplashScreen;
 
     fun fromRoute(route:String?) : NavigationScreen =
         when(route?.substringBefore("/")) {
-            HomeScreen.name -> HomeScreen
+            SignInScreen.name -> SignInScreen
+            SplashScreen.name -> SplashScreen
             else -> throw  IllegalArgumentException("route $route is not a recognized")
         }
 }

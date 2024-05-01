@@ -4,7 +4,8 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.learngetapi.HomeScreen
+import com.example.learngetapi.SignInScreen
+import com.example.learngetapi.page.SplashScreen
 
 @Composable
 fun Navigations() {
@@ -12,10 +13,13 @@ fun Navigations() {
 
     NavHost(
         navController = navController,
-        startDestination = NavigationScreen.HomeScreen.name
+        startDestination = NavigationScreen.SplashScreen.name
     ) {
-        composable(NavigationScreen.HomeScreen.name) {
-            HomeScreen(navController = navController)
+        composable(NavigationScreen.SplashScreen.name) {
+            SplashScreen(navController = navController)
+        }
+        composable(NavigationScreen.SignInScreen.name) {
+            SignInScreen(navController = navController)
         }
     }
 }
