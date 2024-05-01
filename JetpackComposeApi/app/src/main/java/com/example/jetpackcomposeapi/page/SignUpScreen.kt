@@ -202,7 +202,7 @@ fun SignUpScreen(
         ElevatedButton(
             onClick = {
                 navController.navigate(
-                    NavigationScreen.HomeScreen.name
+                    NavigationScreen.SignUpSetPin.name
                 )
             },
             modifier = Modifier

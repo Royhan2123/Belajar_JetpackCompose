@@ -7,6 +7,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.jetpackcomposeapi.page.HomeScreen
 import com.example.jetpackcomposeapi.page.SignInScreen
 import com.example.jetpackcomposeapi.page.SignUpScreen
+import com.example.jetpackcomposeapi.page.SignUpSetPin
 import com.example.jetpackcomposeapi.page.SplashScreen
 
 @Composable
@@ -26,6 +27,9 @@ fun Navigations() {
         }
         composable(NavigationScreen.HomeScreen.name) {
             HomeScreen(navController = navController)
+        }
+        composable(NavigationScreen.SignUpSetPin.name) {
+            SignUpSetPin(navController = navController)
         }
     }
 }
