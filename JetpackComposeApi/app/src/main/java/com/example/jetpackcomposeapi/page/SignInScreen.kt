@@ -111,6 +111,11 @@ fun SignInScreen(
                     fontWeight = FontWeight.Bold
                 )
             },
+            keyboardActions = KeyboardActions(
+                onDone = {
+                    keyboardController?.hide()
+                }
+            ),
         )
         Spacer(modifier = Modifier.height(15.dp))
         OutlinedTextField(
