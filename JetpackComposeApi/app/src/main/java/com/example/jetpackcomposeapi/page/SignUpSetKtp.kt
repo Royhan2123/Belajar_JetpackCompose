@@ -104,7 +104,7 @@ fun SignUpSetKtp(navController: NavController) {
                 ElevatedButton(
                     onClick = {
                         navController.navigate(
-                            NavigationScreen.HomeScreen.name
+                            NavigationScreen.HalamanBottom.name
                         )
                     },
                     modifier = Modifier
