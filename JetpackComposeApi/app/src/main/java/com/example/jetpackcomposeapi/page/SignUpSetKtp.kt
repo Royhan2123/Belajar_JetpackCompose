@@ -13,45 +13,25 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Camera
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.Icon
-import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalSoftwareKeyboardController
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.input.ImeAction
-import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
-import com.example.jetpackcomposeapi.ui.theme.primary
 
 @Composable
-fun SignUpSetPin(navController: NavController) {
-    var txfPin by rememberSaveable {
-        mutableStateOf("")
-    }
-
-    val keyboardController = LocalSoftwareKeyboardController.current
+fun SignUpSetKtp(navController: NavController) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -109,50 +89,6 @@ fun SignUpSetPin(navController: NavController) {
                     modifier = Modifier.align(Alignment.CenterHorizontally)
                 )
                 Spacer(modifier = Modifier.height(50.dp))
-                Text(
-                    text = "Set Your Pin",
-                    fontSize = 14.sp,
-                    color = Color.Black,
-                    fontWeight = FontWeight.SemiBold
-                )
-                Spacer(modifier = Modifier.height(10.dp))
-                OutlinedTextField(
-                    value = txfPin,
-                    onValueChange = {
-                        if (it.length <= 6) {
-                            txfPin = it
-                            if (it.length == 6) {
-                                keyboardController?.hide()
-                            }
-                        }
-                    },
-                    modifier = Modifier.height(55.dp)
-                        .fillMaxWidth(),
-                    keyboardOptions = KeyboardOptions(
-                        imeAction = ImeAction.Done,
-                        keyboardType = KeyboardType.Number,
-                    ),
-                    shape = RoundedCornerShape(
-                        size = 10.dp
-                    ),
-                    textStyle = TextStyle(
-                        color = Color.Black,
-                        fontSize = 15.sp
-                    ),
-                    placeholder = {
-                        Text(
-                            text = "set 6 digit your pin number",
-                            color = Color.Gray,
-                            fontWeight = FontWeight.Bold,
-                            fontSize = 14.sp,
-                        )
-                    },
-                    colors = OutlinedTextFieldDefaults.colors(
-                        focusedBorderColor = primary,
-                        unfocusedBorderColor = Color.Gray
-                    )
-                )
-                Spacer(modifier = Modifier.height(20.dp))
                 ElevatedButton(
                     onClick = {},
                     modifier = Modifier
@@ -175,12 +111,4 @@ fun SignUpSetPin(navController: NavController) {
             }
         }
     }
-}
-
-@Preview
-@Composable
-fun PreviewSignUpSetPin() {
-    SignUpSetPin(
-        navController = rememberNavController()
-    )
 }
