@@ -17,6 +17,7 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Camera
+import androidx.compose.material.icons.filled.CameraAlt
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.Icon
@@ -43,6 +44,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.example.jetpackcomposeapi.navigation.NavigationScreen
+import com.example.jetpackcomposeapi.ui.theme.blue
+import com.example.jetpackcomposeapi.ui.theme.lightGray
 import com.example.jetpackcomposeapi.ui.theme.primary
 
 @Composable
@@ -60,6 +64,13 @@ fun SignUpSetPin(navController: NavController) {
         horizontalAlignment = Alignment.Start,
         verticalArrangement = Arrangement.Center,
     ) {
+        Text(
+            text = "Set Your Pin",
+            fontSize = 15.sp,
+            color = Color.Black,
+            fontWeight = FontWeight.Medium
+        )
+        Spacer(modifier = Modifier.height(10.dp))
         Surface(
             modifier = Modifier
                 .fillMaxWidth()
@@ -85,7 +96,7 @@ fun SignUpSetPin(navController: NavController) {
                         modifier = Modifier
                             .height(100.dp)
                             .width(100.dp),
-                        color = Color.Gray,
+                        color = lightGray,
                         shape = CircleShape
                     ) {
                         Box(
@@ -93,7 +104,7 @@ fun SignUpSetPin(navController: NavController) {
                             contentAlignment = Alignment.Center
                         ) {
                             Icon(
-                                imageVector = Icons.Filled.Camera,
+                                imageVector = Icons.Filled.CameraAlt,
                                 contentDescription = null,
                                 modifier = Modifier.size(40.dp),
                                 tint = Color.Black
@@ -109,13 +120,6 @@ fun SignUpSetPin(navController: NavController) {
                     modifier = Modifier.align(Alignment.CenterHorizontally)
                 )
                 Spacer(modifier = Modifier.height(50.dp))
-                Text(
-                    text = "Set Your Pin",
-                    fontSize = 14.sp,
-                    color = Color.Black,
-                    fontWeight = FontWeight.SemiBold
-                )
-                Spacer(modifier = Modifier.height(10.dp))
                 OutlinedTextField(
                     value = txfPin,
                     onValueChange = {
@@ -126,7 +130,8 @@ fun SignUpSetPin(navController: NavController) {
                             }
                         }
                     },
-                    modifier = Modifier.height(55.dp)
+                    modifier = Modifier
+                        .height(55.dp)
                         .fillMaxWidth(),
                     keyboardOptions = KeyboardOptions(
                         imeAction = ImeAction.Done,
@@ -154,12 +159,16 @@ fun SignUpSetPin(navController: NavController) {
                 )
                 Spacer(modifier = Modifier.height(20.dp))
                 ElevatedButton(
-                    onClick = {},
+                    onClick = {
+                        navController.navigate(
+                            NavigationScreen.SignUpSetKtp.name
+                        )
+                    },
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(45.dp),
                     colors = ButtonDefaults.elevatedButtonColors(
-                        Color.Blue
+                        blue
                     ),
                     enabled = true,
                     shape = RoundedCornerShape(

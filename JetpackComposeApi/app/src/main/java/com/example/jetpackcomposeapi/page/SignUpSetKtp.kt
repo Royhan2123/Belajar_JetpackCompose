@@ -16,6 +16,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Camera
+import androidx.compose.material.icons.filled.CameraAlt
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.Icon
@@ -26,9 +27,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.jetpackcomposeapi.navigation.NavigationScreen
+import com.example.jetpackcomposeapi.ui.theme.blue
+import com.example.jetpackcomposeapi.ui.theme.lightGray
 
 @Composable
 fun SignUpSetKtp(navController: NavController) {
@@ -40,6 +45,13 @@ fun SignUpSetKtp(navController: NavController) {
         horizontalAlignment = Alignment.Start,
         verticalArrangement = Arrangement.Center,
     ) {
+        Text(
+            text = "Set your Ktp Image",
+            fontSize = 15.sp,
+            color = Color.Black,
+            fontWeight = FontWeight.Medium
+        )
+        Spacer(modifier = Modifier.height(10.dp))
         Surface(
             modifier = Modifier
                 .fillMaxWidth()
@@ -65,7 +77,7 @@ fun SignUpSetKtp(navController: NavController) {
                         modifier = Modifier
                             .height(100.dp)
                             .width(100.dp),
-                        color = Color.Gray,
+                        color = lightGray,
                         shape = CircleShape
                     ) {
                         Box(
@@ -73,7 +85,7 @@ fun SignUpSetKtp(navController: NavController) {
                             contentAlignment = Alignment.Center
                         ) {
                             Icon(
-                                imageVector = Icons.Filled.Camera,
+                                imageVector = Icons.Filled.CameraAlt,
                                 contentDescription = null,
                                 modifier = Modifier.size(40.dp),
                                 tint = Color.Black
@@ -88,14 +100,18 @@ fun SignUpSetKtp(navController: NavController) {
                     color = Color.Black,
                     modifier = Modifier.align(Alignment.CenterHorizontally)
                 )
-                Spacer(modifier = Modifier.height(50.dp))
+                Spacer(modifier = Modifier.height(35.dp))
                 ElevatedButton(
-                    onClick = {},
+                    onClick = {
+                        navController.navigate(
+                            NavigationScreen.HomeScreen.name
+                        )
+                    },
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(45.dp),
                     colors = ButtonDefaults.elevatedButtonColors(
-                        Color.Blue
+                       blue
                     ),
                     enabled = true,
                     shape = RoundedCornerShape(

@@ -20,6 +20,7 @@ import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -45,6 +46,8 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.jetpackcomposeapi.navigation.NavigationScreen
+import com.example.jetpackcomposeapi.ui.theme.blue
+import com.example.jetpackcomposeapi.ui.theme.primary
 
 @Composable
 fun SignInScreen(
@@ -116,6 +119,10 @@ fun SignInScreen(
                     keyboardController?.hide()
                 }
             ),
+            colors = OutlinedTextFieldDefaults.colors(
+                focusedBorderColor = primary,
+                unfocusedBorderColor = Color.Gray
+            )
         )
         Spacer(modifier = Modifier.height(15.dp))
         OutlinedTextField(
@@ -166,10 +173,15 @@ fun SignInScreen(
 
                     Icon(
                         imageVector = visibilityIcon,
-                        contentDescription = description
+                        contentDescription = description,
+                        tint = Color.Black
                     )
                 }
-            }
+            },
+            colors = OutlinedTextFieldDefaults.colors(
+                focusedBorderColor = primary,
+                unfocusedBorderColor = Color.Gray
+            )
         )
         Spacer(modifier = Modifier.height(20.dp))
         ElevatedButton(
@@ -182,7 +194,7 @@ fun SignInScreen(
                 .fillMaxWidth()
                 .height(45.dp),
             colors = elevatedButtonColors(
-                Color.Blue
+                blue
             ),
             enabled = true,
             shape = RoundedCornerShape(
@@ -216,7 +228,7 @@ fun SignInScreen(
                 Text(
                     text = "SignUp",
                     fontSize = 13.sp,
-                    color = Color.Blue,
+                    color = blue,
                 )
             }
         }

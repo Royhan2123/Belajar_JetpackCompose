@@ -21,11 +21,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.example.jetpackcomposeapi.ui.theme.lightGray
 
 @Composable
 fun HomeScreen(
@@ -43,14 +45,14 @@ fun HomeScreen(
         ) {
             Column {
                 Text(
-                    text = "Hello Royhan",
+                    text = "Hello, Royhan",
                     fontSize = 17.sp,
                 )
-                Spacer(modifier = Modifier.height(5.dp))
                 Text(
-                    text = "How are you today",
+                    text = "How are you today?",
                     fontSize = 16.sp,
-                    color = Color.Gray
+                    color = Color.Gray,
+                    fontWeight = FontWeight.Medium
                 )
 
             }
@@ -59,7 +61,7 @@ fun HomeScreen(
                 modifier = Modifier
                     .height(70.dp)
                     .width(70.dp),
-                color = Color.Gray,
+                color = lightGray,
                 shape = CircleShape
             ) {
                 Box(

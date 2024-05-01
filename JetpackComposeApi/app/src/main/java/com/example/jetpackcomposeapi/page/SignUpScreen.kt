@@ -20,6 +20,7 @@ import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -45,6 +46,8 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.jetpackcomposeapi.navigation.NavigationScreen
+import com.example.jetpackcomposeapi.ui.theme.blue
+import com.example.jetpackcomposeapi.ui.theme.primary
 
 @Composable
 fun SignUpScreen(
@@ -107,6 +110,10 @@ fun SignUpScreen(
                 imeAction = ImeAction.Done,
                 keyboardType = KeyboardType.Text
             ),
+            colors = OutlinedTextFieldDefaults.colors(
+                focusedBorderColor = primary,
+                unfocusedBorderColor = Color.Gray
+            ),
             placeholder = {
                 Text(
                     text = "enter your name",
@@ -126,6 +133,10 @@ fun SignUpScreen(
             textStyle = TextStyle(
                 color = Color.Black,
                 fontSize = 15.sp
+            ),
+            colors = OutlinedTextFieldDefaults.colors(
+                focusedBorderColor = primary,
+                unfocusedBorderColor = Color.Gray
             ),
             shape = RoundedCornerShape(
                 size = 10.dp
@@ -157,6 +168,10 @@ fun SignUpScreen(
             ),
             shape = RoundedCornerShape(
                 size = 10.dp
+            ),
+            colors = OutlinedTextFieldDefaults.colors(
+                focusedBorderColor = primary,
+                unfocusedBorderColor = Color.Gray
             ),
             singleLine = true,
             keyboardOptions = KeyboardOptions(
@@ -193,7 +208,8 @@ fun SignUpScreen(
 
                     Icon(
                         imageVector = visibilityIcon,
-                        contentDescription = description
+                        contentDescription = description,
+                        tint = Color.Black
                     )
                 }
             }
@@ -209,7 +225,7 @@ fun SignUpScreen(
                 .fillMaxWidth()
                 .height(45.dp),
             colors = elevatedButtonColors(
-                Color.Blue
+                blue
             ),
             enabled = true,
             shape = RoundedCornerShape(
@@ -243,7 +259,7 @@ fun SignUpScreen(
                 Text(
                     text = "SignIn",
                     fontSize = 13.sp,
-                    color = Color.Blue,
+                    color = blue,
                 )
             }
         }
