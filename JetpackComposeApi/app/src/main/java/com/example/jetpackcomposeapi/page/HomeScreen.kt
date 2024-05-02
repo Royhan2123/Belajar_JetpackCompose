@@ -276,7 +276,6 @@ fun HomeScreen(
         Spacer(modifier = Modifier.height(25.dp))
         Row(
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween
         ) {
             TourismOptionChip(
                 text = "Recommended",
