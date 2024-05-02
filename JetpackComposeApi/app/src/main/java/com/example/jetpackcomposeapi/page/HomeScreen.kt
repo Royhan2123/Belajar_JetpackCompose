@@ -56,6 +56,8 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.startActivity
@@ -161,6 +163,7 @@ fun HomeScreen(
             }
         }
     }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -197,7 +200,7 @@ fun HomeScreen(
                                     startActivity(context, mapIntent, null)
                                 }
                         }
-                        .width(150.dp)
+                        .width(170.dp)
                 ) {
                     Icon(
                         imageVector = Icons.Filled.LocationOn,
@@ -231,7 +234,7 @@ fun HomeScreen(
                     Icon(
                         imageVector = Icons.Filled.CameraAlt,
                         contentDescription = null,
-                        modifier = Modifier.size(30.dp),
+                        modifier = Modifier.size(25.dp),
                         tint = Color.Black
                     )
                 }
@@ -360,7 +363,7 @@ fun HomeScreen(
                 }
             )
         }
-        Spacer(modifier = Modifier.height(70.dp))
+        Spacer(modifier = Modifier.height(30.dp))
         Row(
             modifier = Modifier
                 .fillMaxWidth()

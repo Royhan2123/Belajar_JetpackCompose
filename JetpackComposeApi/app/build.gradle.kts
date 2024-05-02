@@ -72,6 +72,9 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 
     //noinspection UseTomlInstead
+    implementation ("androidx.constraintlayout:constraintlayout-compose:1.0.1")
+
+    //noinspection UseTomlInstead
     implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
 
 
