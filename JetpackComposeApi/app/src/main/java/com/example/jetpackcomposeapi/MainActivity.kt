@@ -7,6 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.jetpackcomposeapi.navigation.Navigations
 import com.example.jetpackcomposeapi.ui.theme.JetpackComposeApiTheme
+import com.example.jetpackcomposeapi.widget.CardDestination
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -15,7 +16,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             JetpackComposeApiTheme {
-             Navigations()
+            Navigations()
             }
         }
     }

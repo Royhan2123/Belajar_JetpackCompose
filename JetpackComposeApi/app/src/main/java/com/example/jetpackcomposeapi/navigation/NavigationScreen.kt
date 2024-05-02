@@ -9,7 +9,8 @@ enum class NavigationScreen {
     HalamanBottom,
     HomeScreen,
     SearchScreen,
-    AccountScreen;
+    AccountScreen,
+    CardDestination;
 
     fun fromRoute(route: String): NavigationScreen =
         when (route.substringBefore("/")) {
@@ -22,6 +23,7 @@ enum class NavigationScreen {
             HalamanBottom.name -> HalamanBottom
             AccountScreen.name -> AccountScreen
             HomeScreen.name -> HomeScreen
+            CardDestination.name -> CardDestination
 
             else -> throw IllegalArgumentException("Route $route is not recognized")
         }

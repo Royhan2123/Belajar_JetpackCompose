@@ -49,7 +49,7 @@ fun SplashScreen(navController: NavController) {
                 inclusive = true
             )
         }
-        navController.navigate(NavigationScreen.SignInScreen.name)
+        navController.navigate(NavigationScreen.HomeScreen.name)
     }
     Column(
         modifier = Modifier.fillMaxSize()

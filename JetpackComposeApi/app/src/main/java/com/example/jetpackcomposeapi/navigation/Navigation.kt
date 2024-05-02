@@ -13,6 +13,7 @@ import com.example.jetpackcomposeapi.page.SignUpScreen
 import com.example.jetpackcomposeapi.page.SignUpSetKtp
 import com.example.jetpackcomposeapi.page.SignUpSetPin
 import com.example.jetpackcomposeapi.page.SplashScreen
+import com.example.jetpackcomposeapi.widget.CardDestination
 
 @Composable
 fun Navigations() {
@@ -47,6 +48,5 @@ fun Navigations() {
         composable(NavigationScreen.AccountScreen.name) {
             AccountScreen(navController = navController)
         }
-
     }
 }
