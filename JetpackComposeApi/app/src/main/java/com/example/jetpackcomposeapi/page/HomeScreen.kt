@@ -1,5 +1,15 @@
+@file:Suppress("DEPRECATION")
+
 package com.example.jetpackcomposeapi.page
 
+import android.app.Activity
+import android.content.Context
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.location.Geocoder
+import android.location.Location
+import android.net.Uri
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -15,6 +25,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 //noinspection UsingMaterialAndMaterial3Libraries
 import androidx.compose.material.Chip
 //noinspection UsingMaterialAndMaterial3Libraries
@@ -23,23 +34,31 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material3.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CameraAlt
+import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.runtime.Composable
-import androidx.compose.material3.Surface
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.material3.Surface
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.startActivity
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.jetpackcomposeapi.R
@@ -47,6 +66,49 @@ import com.example.jetpackcomposeapi.ui.theme.blue
 import com.example.jetpackcomposeapi.ui.theme.grey
 import com.example.jetpackcomposeapi.ui.theme.lightGray
 import com.example.jetpackcomposeapi.widget.CardDestination
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import java.util.Locale
+import kotlin.coroutines.resume
+import kotlin.coroutines.suspendCoroutine
+
+
+suspend fun getAddressFromLocation(context: Context, location: Location): String {
+    return withContext(Dispatchers.IO) {
+        val geocoder = Geocoder(context, Locale.getDefault())
+        val addresses = geocoder.getFromLocation(location.latitude, location.longitude, 1)
+        if (addresses!!.isNotEmpty()) {
+            val address = addresses[0]
+            address.getAddressLine(0) ?: "Unknown"
+        } else {
+            "Unknown"
+        }
+    }
+}
+
+suspend fun getLocation(context: Context, fusedLocationClient: FusedLocationProviderClient): Location? {
+    return suspendCoroutine { continuation ->
+        if (ContextCompat.checkSelfPermission(
+                context,
+                android.Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                context as Activity,
+                arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION),
+                1
+            )
+            continuation.resume(null)
+        } else {
+            fusedLocationClient.lastLocation
+                .addOnSuccessListener { location: Location? ->
+                    continuation.resume(location)
+                }
+        }
+    }
+}
 
 @Composable
 fun HomeScreen(
@@ -59,10 +121,51 @@ fun HomeScreen(
         mutableStateOf(listOf<String>())
     }
 
+    var locationText by remember { mutableStateOf("Location: Unknown") }
+    val context = LocalContext.current
+    val fusedLocationClient = remember(context) {
+        LocationServices.getFusedLocationProviderClient(context)
+    }
+    LaunchedEffect(Unit) {
+        val location = withContext(Dispatchers.IO) {
+            getLocation(context, fusedLocationClient)
+        }
+        location?.let {
+            val currentAddress = getAddressFromLocation(context, location)
+            locationText = "Location: $currentAddress"
+        }
+    }
+
+    LaunchedEffect(Unit) {
+        // Check if location permission is granted
+        if (ContextCompat.checkSelfPermission(
+                context,
+                android.Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            // Request location permission
+            ActivityCompat.requestPermissions(
+                context as Activity,
+                arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION),
+                1
+            )
+        } else {
+            // If permission is granted, get the last known location
+            val location = withContext(Dispatchers.IO) {
+                getLocation(context, fusedLocationClient)
+            }
+            location?.let {
+                // Update locationText with the current address
+                val currentAddress = getAddressFromLocation(context, location)
+                locationText = "Location: $currentAddress"
+            }
+        }
+    }
     Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(20.dp)
+            .verticalScroll(rememberScrollState())
     ) {
         Row(
             modifier = Modifier.fillMaxWidth(),
@@ -80,13 +183,44 @@ fun HomeScreen(
                     color = Color.Gray,
                     fontWeight = FontWeight.Medium
                 )
-
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier
+                        .clickable {
+                            locationText
+                                .takeIf { it != "Location: Unknown" }
+                                ?.let { currentLocation ->
+                                    val currentLocationUri =
+                                        Uri.parse("geo:${currentLocation.substringAfter("")}?q=$currentLocation")
+                                    val mapIntent = Intent(Intent.ACTION_VIEW, currentLocationUri)
+                                    mapIntent.setPackage("com.google.android.apps.maps")
+                                    startActivity(context, mapIntent, null)
+                                }
+                        }
+                        .width(150.dp)
+                ) {
+                    Icon(
+                        imageVector = Icons.Filled.LocationOn,
+                        contentDescription = "icon-location",
+                        tint = Color.Red,
+                        modifier = Modifier.size(15.dp)
+                    )
+                    Spacer(modifier = Modifier.width(3.dp))
+                    Text(
+                        text = locationText.removePrefix("Location: "),
+                        fontSize = 13.sp,
+                        color = Color.Gray,
+                        fontWeight = FontWeight.Medium,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
+                    )
+                }
             }
 
             Surface(
                 modifier = Modifier
-                    .height(70.dp)
-                    .width(70.dp),
+                    .height(75.dp)
+                    .width(75.dp),
                 color = lightGray,
                 shape = CircleShape
             ) {
@@ -152,7 +286,6 @@ fun HomeScreen(
                     }
                 }
             )
-            Spacer(modifier = Modifier.width(7.dp))
 
             TourismOptionChip(
                 text = "Intresting",
@@ -165,7 +298,6 @@ fun HomeScreen(
                     }
                 }
             )
-            Spacer(modifier = Modifier.width(7.dp))
 
             TourismOptionChip(
                 text = "Nearest",
@@ -194,7 +326,6 @@ fun HomeScreen(
                     }
                 }
             )
-            Spacer(modifier = Modifier.width(7.dp))
             TourismOptionChip(
                 text = "Cheapest",
                 selected = selectedOption.contains("Cheapest"),
@@ -206,7 +337,6 @@ fun HomeScreen(
                     }
                 }
             )
-            Spacer(modifier = Modifier.width(7.dp))
             TourismOptionChip(
                 text = "Mountains",
                 selected = selectedOption.contains("Mountains"),
@@ -218,7 +348,6 @@ fun HomeScreen(
                     }
                 }
             )
-            Spacer(modifier = Modifier.width(7.dp))
             TourismOptionChip(
                 text = "View",
                 selected = selectedOption.contains("View"),
@@ -277,6 +406,9 @@ fun HomeScreen(
         }
     }
 }
+
+
+
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable

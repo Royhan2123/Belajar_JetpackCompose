@@ -43,16 +43,19 @@ fun CardDestination(
 ) {
     Surface(
         modifier = Modifier
-            .height(300.dp)
+            .height(320.dp)
             .width(220.dp)
             .shadow(
                 elevation = 5.dp,
                 spotColor = Color.Gray,
                 shape = RoundedCornerShape(
                     bottomStart = 15.dp,
-                    bottomEnd = 15.dp
+                    bottomEnd = 15.dp,
+                    topStart = 15.dp,
+                    topEnd = 15.dp
                 )
             ),
+        color = Color.White
     ) {
         Column(
             modifier = Modifier.fillMaxSize(),
@@ -63,13 +66,7 @@ fun CardDestination(
                 contentDescription = "image-drawable",
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(200.dp)
-                    .clip(
-                        shape = RoundedCornerShape(
-                            topStart = 15.dp,
-                            topEnd = 15.dp,
-                        )
-                    ),
+                    .height(220.dp),
                 contentScale = ContentScale.FillBounds
             )
             Column(
